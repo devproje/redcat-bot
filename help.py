@@ -19,5 +19,6 @@ class Help(commands.Cog):
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
         embed.add_field(name="`\\reload`", value="Reload command", inline=True)
         embed.add_field(name="`\\reboot`", value="Reboot command **Update bot only**", inline=True)
+        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
 
         await ctx.send(embed=embed)
