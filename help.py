@@ -21,4 +21,4 @@ class Help(commands.Cog):
         embed.add_field(name="`\\reboot`", value="Reboot command **Update bot only**", inline=True)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
 
-        await ctx.send(embed=embed)
+        await ctx.channel.send(embed=embed)

@@ -14,7 +14,7 @@ for filename in os.listdir("Cogs"):
 @bot.event
 async def on_ready():
     print("Logined!")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2."))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
 
 @bot.command()
 async def load(ctx, extension):
