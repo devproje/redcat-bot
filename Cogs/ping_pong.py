@@ -2,6 +2,9 @@ import discord, os, asyncio
 from discord import embeds
 from discord.ext import commands
 
+def setup(bot):
+    bot.add_cog(PingPong(bot))
+
 class PingPong(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
