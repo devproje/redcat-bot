@@ -5,7 +5,7 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-bot = commands.Bot(command_prefix="\\", help_command=None)
+bot = commands.Bot(command_prefix="\\", help_command=help)
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
@@ -14,7 +14,7 @@ for filename in os.listdir("Cogs"):
 @bot.event
 async def on_ready():
     print("Logined!")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2."))
 
 @bot.command()
 async def load(ctx, extension):
