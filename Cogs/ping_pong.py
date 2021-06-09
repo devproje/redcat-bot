@@ -13,10 +13,10 @@ class PingPong(commands.Cog):
 
     @commands.command(name="ping")
     async def ping(self, ctx):
-        embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(bot.latency * 1000)}ms", color=self.embed_color)
+        embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(self.bot.latency * 1000)}ms", color=self.embed_color)
         await ctx.send(embed=embed)
 
     @commands.command(name="pong")
     async def pong(self, ctx):
-        embed=discord.Embed(title=":ping_pong: Ping!", description=f"{round(bot.latency * 1000)}ms", color=self.embed_color)
+        embed=discord.Embed(title=":ping_pong: Ping!", description=f"{round(self.bot.latency * 1000)}ms", color=self.embed_color)
         await ctx.send(embed=embed)

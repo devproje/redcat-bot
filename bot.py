@@ -35,20 +35,17 @@ async def unload(ctx, extension):
 
 
 @bot.command(name="reload")  # 1
-async def reload_commands(ctx, extension=None):  # 2
-    if ctx.author.guild_permissions.administrator:
-        if extension is None:  # 3
-            for filename in os.listdir("Cogs"):
-                if filename.endswith(".py"):
-                    bot.unload_extension(f"Cogs.{filename[:-3]}")
-                    bot.load_extension(f"Cogs.{filename[:-3]}")
-                    await ctx.send(":white_check_mark: 모든 명령어를 다시 불러왔습니다!")
+async def reload_commands(ctx, extension=None):
+    if extension is None:  # 3
+        for filename in os.listdir("Cogs"):
+            if filename.endswith(".py"):
+                bot.unload_extension(f"Cogs.{filename[:-3]}")
+                bot.load_extension(f"Cogs.{filename[:-3]}")
+                await ctx.send(":white_check_mark: 모든 명령어를 다시 불러왔습니다!")
 
-        else:  # 4
-            bot.unload_extension(f"Cogs.{extension}")  # 5
-            bot.load_extension(f"Cogs.{extension}")
-            await ctx.send(f":white_check_mark: {extension}을(를) 다시 불러왔습니다!")
-    else:
-        await ctx.send(':negative_squared_cross_mark: 권한이 없거나 불러오는데 실패하였습니다.')
+    else:  # 4
+        bot.unload_extension(f"Cogs.{extension}")  # 5
+        bot.load_extension(f"Cogs.{extension}")
+        await ctx.send(f":white_check_mark: {extension}을(를) 다시 불러왔습니다!")    
 
 bot.run(token)
