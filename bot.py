@@ -36,6 +36,8 @@ async def unload(ctx, extension):
 
 @bot.command(name="reload")  # 1
 async def reload_commands(ctx, extension=None):
+    os.system("git pull origin master")
+
     if extension is None:  # 3
         for filename in os.listdir("Cogs"):
             if filename.endswith(".py"):
