@@ -14,7 +14,7 @@ for filename in os.listdir("Cogs"):
 @bot.event
 async def on_ready():
     print("Logined!")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.0"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
 
 @bot.command()
 async def load(ctx, extension):
@@ -41,7 +41,7 @@ async def reload_commands(ctx, extension=None):
             if filename.endswith(".py"):
                 bot.unload_extension(f"Cogs.{filename[:-3]}")
                 bot.load_extension(f"Cogs.{filename[:-3]}")
-                
+
         await ctx.send(":white_check_mark: reload complete!")
 
     else:  # 4
