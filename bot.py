@@ -1,56 +1,54 @@
-from time import sleep
-import discord, os
-from discord import activity
-from discord import embeds
+import discord, os, asyncio
 from discord.ext import commands
-from discord.ext.commands.help import HelpCommand
-
-version = "v0.1.0"
-personal_color = 0x75B8FF
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
-prefix = "\\"
 
-game = discord.Game(f"ProjectBot-{version}")
-client = commands.Bot(command_prefix=prefix, status = discord.Status.online, activity = game)
+bot = commands.Bot(command_prefix="\\")
 
-@client.event
+for filename in os.listdir("Cogs"):
+    if filename.endswith(".py"):
+        bot.load_extension(f"Cogs.{filename[:-3]}")
+
+@bot.event
 async def on_ready():
-    print("ProjectBot v0.1.0")
+    print("Logined!")
+    await bot.change_presence(status=discord.Status.online, activity="ProjectBot v0.2.0")
 
-@client.command(name="ping")
-async def ping(ctx):
-    embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(client.latency * 1000)}ms", color=personal_color)
-    await ctx.send(embed=embed)
-
-@client.command(name="pong")
-async def pong(ctx):
-    embed=discord.Embed(title=":ping_pong: Ping!", description=f"{round(client.latency * 1000)}ms", color=personal_color)
-    await ctx.send(embed=embed)
-
-@client.command(name="reload")
-async def reload(ctx, argument):
-    if argument == "confirm":
-        embed = discord.Embed(title=":repeat: Reload", description="**Please wait just more secs!**\nDiscord bot reloading...", color=0xFF0000)
-        await ctx.channel.send(embed=embed)
-        exit()
-
+@bot.command()
+async def load(ctx, extension):
+    if ctx.author.guild_permissions.administrator == False:
+        ctx.send('권한이 없습니다.')
     else:
-        embed = discord.Embed(title=":repeat: Reload", description=f"**{argument}** is not exist\nDiscord bot reloading...", color=0xFF0000)
-        await ctx.channel.send(embed=embed)
-        
-    # embed = discord.Embed(title="Reload Error!", description="**You're not owner!**", color=0xFF0000)
-    # wait ctx.channel.send(embed=embed)
+        bot.load_extension(f"Cogs.{extension}")
+        await ctx.send(f":white_check_mark: {extension}을(를) 로드했습니다!")
 
-@reload.error
-async def reload_error(ctx, error):
-    embed = discord.Embed(title="Reload Error!", description="**You must type confirm!**\nEx)\\reload confirm", color=0xFF0000)
-    await ctx.channel.send(embed=embed)   
 
-@client.command(name="carrot")
-async def carrot(ctx):
-    await ctx.send(":carrot:")
+@bot.command()
+async def unload(ctx, extension):
+    if ctx.author.guild_permissions.administrator == False:
+        await ctx.send('권한이 없습니다.')
+    else:
+        bot.unload_extension(f"Cogs.{extension}")
+        await ctx.send(f":white_check_mark: {extension}을(를) 언로드했습니다!")
 
-client.run(token)
+
+@bot.command(name="reload")  # 1
+async def reload_commands(ctx, extension=None):  # 2
+    if ctx.author.guild_permissions.administrator:
+        if extension is None:  # 3
+            for filename in os.listdir("Cogs"):
+                if filename.endswith(".py"):
+                    bot.unload_extension(f"Cogs.{filename[:-3]}")
+                    bot.load_extension(f"Cogs.{filename[:-3]}")
+                    await ctx.send(":white_check_mark: 모든 명령어를 다시 불러왔습니다!")
+
+        else:  # 4
+            bot.unload_extension(f"Cogs.{extension}")  # 5
+            bot.load_extension(f"Cogs.{extension}")
+            await ctx.send(f":white_check_mark: {extension}을(를) 다시 불러왔습니다!")
+    else:
+        await ctx.send(':negative_squared_cross_mark: 권한이 없거나 불러오는데 실패하였습니다.')
+
+bot.run(token)
