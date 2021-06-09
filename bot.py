@@ -5,7 +5,7 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-bot = commands.Bot(command_prefix="\\")
+bot = commands.Bot(command_prefix="\\", help_command=None)
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
