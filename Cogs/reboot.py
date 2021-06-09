@@ -13,6 +13,6 @@ class Reboot(commands.Cog):
 
     @commands.command(name="reboot")
     async def reboot(self, ctx):
-        embed = discord.Embed(title=":repeat: Reload", description="**Please wait just more secs!**\nDiscord bot reloading...", color=0xFF0000)
+        embed = discord.Embed(title=":repeat: Reboot", description="**Please wait just more secs!**\nDiscord bot rebooting...", color=0xFF0000)
         await ctx.send(embed=embed)
         exit()
