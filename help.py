@@ -12,7 +12,7 @@ class Help(commands.Cog):
 
     @commands.command(name="phelp")
     async def help(self, ctx):
-        embed = discord.Embed(title=":dart: **Help**", description="", color=self.embed_color)
+        embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=self.embed_color)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
