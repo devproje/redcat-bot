@@ -10,7 +10,7 @@ class Help(commands.Cog):
         self.bot = bot
         self.embed_color = 0x75B8FF
 
-    @commands.command(name="help")
+    @commands.command(name="phelp")
     async def help(self, ctx):
         embed = discord.Embed(title=":dart: **Help**", description="", color=self.embed_color)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
