@@ -1,6 +1,7 @@
 import discord, os, asyncio
 from discord import embeds
 from discord.ext import commands
+from discord.ext.commands import bot
 
 def setup(bot):
     bot.add_cog(PingPong(bot))
@@ -8,12 +9,14 @@ def setup(bot):
 class PingPong(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.embed_color = 0x75B8FF
 
     @commands.command(name="ping")
-    async def ping(ctx):
-        embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(client.latency * 1000)}ms", color=personal_color)
+    async def ping(self, ctx):
+        embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(bot.latency * 1000)}ms", color=self.embed_color)
         await ctx.send(embed=embed)
 
     @commands.command(name="pong")
-    async def pong(ctx):
-        embed = discord.Embed(title="::")
+    async def pong(self, ctx):
+        embed=discord.Embed(title=":ping_pong: Ping!", description=f"{round(bot.latency * 1000)}ms", color=self.embed_color)
+        await ctx.send(embed=embed)
