@@ -26,7 +26,7 @@ async def on_ready():
 async def reload_commands(ctx, extension=None):
     print(f"name: {ctx.author.name}, id: {ctx.author.id}")
 
-    if check_id(ctx.author.name, ctx.author.id):
+    if check_user(ctx.author.name, ctx.author.id):
         if extension is None:
             for filename in os.listdir("Cogs"):
                 if filename.endswith(".py"):
