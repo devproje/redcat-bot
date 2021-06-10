@@ -33,7 +33,7 @@ async def reload_commands(ctx, extension=None):
         else:
             bot.unload_extension(f"Cogs.{extension}")
             bot.load_extension(f"Cogs.{extension}")
-            await ctx.send(f":white_check_mark: {extension} has reloaded!")    
+            await ctx.send(f":white_check_mark: {extension} has reloaded!")
     else:
         await ctx.send(":stop_sign: Error!")
 
