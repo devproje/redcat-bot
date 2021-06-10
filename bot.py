@@ -26,6 +26,10 @@ async def on_ready():
     print("Logined!")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
 
+    shell_command = input("Project_Bot>")
+    if shell_command == "reboot":
+        exit()
+
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
     print(f"name: {ctx.author.name}, id: {ctx.author.id}")
