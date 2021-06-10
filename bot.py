@@ -28,8 +28,7 @@ for filename in os.listdir("Cogs"):
 
 @bot.event
 async def on_ready():
-    print("Logined for ProjectBot shell!")
-    print("If you unknown command, please type 'help'.")
+    print("Logined for ProjectBot")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
 
 @bot.command(name="version")
