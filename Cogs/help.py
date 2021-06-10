@@ -17,8 +17,11 @@ class Help(commands.Cog):
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
+        embed.set_footer(text="**Bot owner command**", icon_url=None)
         embed.add_field(name="`\\reload`", value="Reload command", inline=True)
         embed.add_field(name="`\\reboot`", value="Reboot command **Update bot only**", inline=True)
+        embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
+        embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
 
         await ctx.channel.send(embed=embed)

@@ -16,41 +16,35 @@ async def on_ready():
     print("Logined!")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
 
-@bot.command()
+@bot.command(name="load")
 async def load(ctx, extension):
-    if ctx.author.guild_permissions.administrator == False:
-        ctx.send('권한이 없습니다.')
-    else:
-        bot.load_extension(f"Cogs.{extension}")
-        await ctx.send(f":white_check_mark: {extension}을(를) 로드했습니다!")
+    # ctx.send("You're not bot owner!")
+    bot.load_extension(f"Cogs.{extension}")
+    await ctx.send(f":white_check_mark: {extension}을(를) 로드했습니다!")
 
 
-@bot.command()
+@bot.command(name="unload")
 async def unload(ctx, extension):
-    if ctx.author.guild_permissions.administrator == False:
-        await ctx.send('권한이 없습니다.')
+    # await ctx.send("You're not bot owner!")
+    bot.unload_extension(f"Cogs.{extension}")
+    await ctx.send(f":stop_sign: {extension}을(를) 언로드했습니다!")
+
+
+@bot.command(name="reload")
+async def reload_commands(ctx, extension=None):
+    if extension is None:
+        for filename in os.listdir("Cogs"):
+            if filename.endswith(".py"):
+                bot.unload_extension(f"Cogs.{filename[:-3]}")
+                bot.load_extension(f"Cogs.{filename[:-3]}")
+
+        await ctx.send(":white_check_mark: reload complete!")
+
     else:
         bot.unload_extension(f"Cogs.{extension}")
-        await ctx.send(f":white_check_mark: {extension}을(를) 언로드했습니다!")
+        bot.load_extension(f"Cogs.{extension}")
+        await ctx.send(f":white_check_mark: {extension} has reloaded!")    
 
-
-@bot.command(name="reload")  # 1
-async def reload_commands(ctx, extension=None):
-    if ctx.author.id == "415801068174180352":
-        if extension is None:  # 3
-            for filename in os.listdir("Cogs"):
-                if filename.endswith(".py"):
-                    bot.unload_extension(f"Cogs.{filename[:-3]}")
-                    bot.load_extension(f"Cogs.{filename[:-3]}")
-
-            await ctx.send(":white_check_mark: reload complete!")
-
-        else:  # 4
-            bot.unload_extension(f"Cogs.{extension}")  # 5
-            bot.load_extension(f"Cogs.{extension}")
-            await ctx.send(f":white_check_mark: {extension} has reloaded!")    
-
-    else:
-        await ctx.send(":stop_sign: Error!")
+    # await ctx.send(":stop_sign: Error!")
 
 bot.run(token)
