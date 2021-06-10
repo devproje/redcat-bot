@@ -5,7 +5,7 @@ def setup(bot):
     bot.add_cog(bot)
 
 class WintChoco(commands.Cog):
-    async def __init__(self, bot):
+    def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0x75B8FF
 
