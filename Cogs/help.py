@@ -19,6 +19,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
     
+    @commands.command(name="help")
     async def owner_help(self, ctx, owner_command):
         embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
