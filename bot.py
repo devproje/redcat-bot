@@ -1,6 +1,5 @@
 import discord, os, asyncio
 from discord.ext import commands
-from get_owner import check_id
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
