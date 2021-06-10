@@ -22,7 +22,7 @@ class WintChoco(commands.Cog):
         else:
             return None
 
-    @wint_choco
+    @wint_choco.error
     async def on_error(self, ctx, error):
         embed = discord.Embed(title="Error!", descroption=f"{error} is not found!", color=self.embed_color)
         await ctx.send(embed=embed)
