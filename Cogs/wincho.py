@@ -7,7 +7,7 @@ def setup(bot):
 class WinCho(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xFFF1D6
 
     @commands.command(name="wincho")
     async def wincho(self, ctx, wincho_action):
