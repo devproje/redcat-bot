@@ -18,6 +18,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
         embed.add_field(name="`\\wincho`", value="you can broken wintchoco", inline=True)
+        embed.add_field(name="`\\윈초`", value="당신은 윈초를 괴롭힐 수 있습니다", inline=True)
 
         embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
         embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
