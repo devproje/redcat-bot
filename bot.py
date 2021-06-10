@@ -1,5 +1,6 @@
 import discord, os, asyncio
 from discord.ext import commands
+from get_owner import check_id
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
@@ -18,19 +19,20 @@ async def on_ready():
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
-    if extension is None:
-        for filename in os.listdir("Cogs"):
-            if filename.endswith(".py"):
-                bot.unload_extension(f"Cogs.{filename[:-3]}")
-                bot.load_extension(f"Cogs.{filename[:-3]}")
+    if check_id(ctx.author.id):
+        if extension is None:
+            for filename in os.listdir("Cogs"):
+                if filename.endswith(".py"):
+                    bot.unload_extension(f"Cogs.{filename[:-3]}")
+                    bot.load_extension(f"Cogs.{filename[:-3]}")
 
-        await ctx.send(":white_check_mark: reload complete!")
+            await ctx.send(":white_check_mark: reload complete!")
 
+        else:
+            bot.unload_extension(f"Cogs.{extension}")
+            bot.load_extension(f"Cogs.{extension}")
+            await ctx.send(f":white_check_mark: {extension} has reloaded!")    
     else:
-        bot.unload_extension(f"Cogs.{extension}")
-        bot.load_extension(f"Cogs.{extension}")
-        await ctx.send(f":white_check_mark: {extension} has reloaded!")    
-
-    # await ctx.send(":stop_sign: Error!")
+        await ctx.send(":stop_sign: Error!")
 
 bot.run(token)
