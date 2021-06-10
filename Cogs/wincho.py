@@ -12,17 +12,22 @@ class WinCho(commands.Cog):
     @commands.command(name="wincho")
     async def wincho(self, ctx, wincho_action):
         if wincho_action == "smash":
-            embed = discord.Embed(description="**윈초 부수기!**", color=self.embed_color)
+            embed = discord.Embed(description="**Smashing Wincho!**", color=self.embed_color)
             embed.set_image(url="https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg")
             embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "melt":
-            embed = discord.Embed(description="**윈초 녹이기!**", color=self.embed_color)
+            embed = discord.Embed(description="**Melting Wincho!**", color=self.embed_color)
             embed.set_image(url="https://ak.picdn.net/shutterstock/videos/1014557474/thumb/1.jpg")
             embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "call":
             await ctx.channel.send("<@!602733713842896908> 빨리와바")
+        elif wincho_action == "burn":
+            embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
+            embed.set_image(url="http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0")
+            embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
     @commands.command(name="윈초")
     async def wincho_korean(self, ctx, wincho_action):
@@ -38,6 +43,11 @@ class WinCho(commands.Cog):
             await ctx.send(embed=embed)
         elif wincho_action == "부르기":
             await ctx.channel.send("<@!602733713842896908> 빨리와바")
+        elif wincho_action == "태우기":
+            embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
+            embed.set_image(url="http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0")
+            embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
     @wincho.error
     async def choco_error(self, ctx, error):
