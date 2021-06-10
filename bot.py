@@ -5,7 +5,7 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-version="v0.3.0"
+bot_version="v0.3.0"
 
 embed_color = 0x75B8FF
 
@@ -28,13 +28,13 @@ for filename in os.listdir("Cogs"):
 @bot.event
 async def on_ready():
     print("Logined for ProjectBot")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
 
 @bot.command(name="version")
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=embed_color)
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-    embed.add_field(name=f"**Version**", value=f"{version}", inline=False)
+    embed.add_field(name=f"**Version**", value=f"{bot_version}", inline=False)
     embed.add_field(name=f"**Author**", value="Project_TL#9436", inline=False)
     embed.add_field(name=f"**Contributers**", value="None", inline=False)
 
