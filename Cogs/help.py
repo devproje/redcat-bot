@@ -26,7 +26,9 @@ class Help(commands.Cog):
             embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
             embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
             embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
-            
+
+            await ctx.channel.send(embed=embed)
+        elif owner_command == None:
             await ctx.channel.send(embed=embed)
         else:
-            await ctx.channel.send(embed=embed)
+            return None
