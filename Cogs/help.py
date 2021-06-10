@@ -11,7 +11,15 @@ class Help(commands.Cog):
         self.embed_color = 0x75B8FF
 
     @commands.command(name="help")
-    async def help(self, ctx, owner_command):
+    async def help(self, ctx):
+        embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
+        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+        embed.add_field(name="`\\help`", value="Open help embed", inline=True)
+        embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
+        embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
+        embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
+    
+    async def owner_help(self, ctx, owner_command):
         embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
