@@ -18,23 +18,12 @@ class Help(commands.Cog):
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
-    
-    async def owner_help(self, ctx, owner_command):
-        embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-        embed.add_field(name="`\\help`", value="Open help embed", inline=True)
-        embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
-        embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
-        embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
 
-        if owner_command == "owner":
-            embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
-            embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
-            embed.add_field(name="`\\reload`", value="Reload command", inline=True)
-            embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
-            embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
-            embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
+        embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
+        embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
+        embed.add_field(name="`\\reload`", value="Reload command", inline=True)
+        embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
+        embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
+        embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
 
-            await ctx.channel.send(embed=embed)     
-        else:
-            return None
+        await ctx.channel.send(embed=embed)
