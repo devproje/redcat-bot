@@ -12,13 +12,13 @@ class Help(commands.Cog):
 
     @commands.command(name="help")
     async def help(self, ctx):
-        embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=self.embed_color)
+        embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
-        
+
         embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
         embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
         embed.add_field(name="`\\reload`", value="Reload command", inline=True)
