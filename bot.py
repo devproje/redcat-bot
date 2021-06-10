@@ -31,17 +31,18 @@ async def on_ready():
     print("Logined for ProjectBot shell!\n")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
 
-    shell_command = input("ProjectBot>")
-    if shell_command == "reboot":
-        exit()
-    elif shell_command == "clear":
-        os.system("clear")
-    elif shell_command == "help":
-        print("reboot")
-        print("clear")
-        print("help")
-    else:
-        print(f"{shell_command} command is unavaliable\n")
+    while True:
+        shell_command = input("ProjectBot>")
+        if shell_command == "reboot":
+            exit()
+        elif shell_command == "clear":
+            os.system("clear")
+        elif shell_command == "help":
+            print("reboot")
+            print("clear")
+            print("help")
+        else:
+            print(f"{shell_command} command is unavaliable\n")
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
