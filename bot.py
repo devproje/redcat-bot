@@ -27,13 +27,7 @@ for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
         bot.load_extension(f"Cogs.{filename[:-3]}")
 
-@bot.event
-async def on_ready():
-    print(f"ProjectBot shell {shell_version}\n")
-    print("Logined for ProjectBot shell!")
-    print("If you unknown command, please type 'help'.")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
-
+async def shell():
     while True:
         shell_command = input("ProjectBot>")
         if shell_command == "reboot":
@@ -50,6 +44,14 @@ async def on_ready():
             print(f"Shell verison: {shell_version}")
         else:
             print(f"{shell_command} command is unavaliable")
+
+@bot.event
+async def on_ready():
+    print(f"ProjectBot shell {shell_version}\n")
+    print("Logined for ProjectBot shell!")
+    print("If you unknown command, please type 'help'.")
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
+    await shell()
 
 @bot.command(name="version")
 async def version(ctx):
