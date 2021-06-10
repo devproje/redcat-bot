@@ -16,20 +16,6 @@ async def on_ready():
     print("Logined!")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
 
-@bot.command(name="load")
-async def load(ctx, extension):
-    # ctx.send("You're not bot owner!")
-    bot.load_extension(f"Cogs.{extension}")
-    await ctx.send(f":white_check_mark: {extension}을(를) 로드했습니다!")
-
-
-@bot.command(name="unload")
-async def unload(ctx, extension):
-    # await ctx.send("You're not bot owner!")
-    bot.unload_extension(f"Cogs.{extension}")
-    await ctx.send(f":stop_sign: {extension}을(를) 언로드했습니다!")
-
-
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
     if extension is None:
