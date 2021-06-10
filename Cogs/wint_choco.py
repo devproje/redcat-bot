@@ -5,7 +5,7 @@ def setup(bot):
     bot.add_cog(WintChoco(bot))
 
 class WintChoco(commands.Cog):
-    async def __init__(self, bot):
+    def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0x75B8FF
 
@@ -21,8 +21,6 @@ class WintChoco(commands.Cog):
             embed.set_image(url="https://ak.picdn.net/shutterstock/videos/1014557474/thumb/1.jpg")
             embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
-        else:
-            return None
 
     @wint_choco.error
     async def choco_error(self, ctx, error):
