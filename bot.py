@@ -8,6 +8,12 @@ token = open_token.read().split()[0]
 
 bot = commands.Bot(command_prefix="\\", help_command=None)
 
+def check_user(name, id):
+    if name == "Project_TL" & id != "852387809481195520":
+        return False
+    else:
+        return True
+
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
         bot.load_extension(f"Cogs.{filename[:-3]}")
