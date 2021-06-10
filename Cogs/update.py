@@ -2,7 +2,7 @@ import discord, os, asyncio
 from discord.ext import commands
 
 def setup(bot):
-    bot.add_cog(bot)
+    bot.add_cog(Update(bot))
 
 class Update(commands.Cog):
     def __init__(self, bot):

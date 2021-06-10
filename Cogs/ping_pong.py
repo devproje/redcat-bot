@@ -1,7 +1,6 @@
 import discord, os, asyncio
 from discord import embeds
 from discord.ext import commands
-from discord.ext.commands import bot
 
 def setup(bot):
     bot.add_cog(PingPong(bot))
