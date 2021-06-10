@@ -22,7 +22,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\version`", value="You can see this bot version", inline=True)
 
         if ctx.author.id != 415801068174180352:
-            return None
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         else:
             embed.add_field(name="**Bot owner command**", value="This command only can use with bot owner", inline=False)
             embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
@@ -30,6 +30,6 @@ class Help(commands.Cog):
             embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
             embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
             embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
-        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
