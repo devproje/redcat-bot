@@ -22,7 +22,7 @@ class Help(commands.Cog):
         embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
         embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
         embed.add_field(name="`\\reload`", value="Reload command", inline=True)
-        embed.add_field(name="`\\notice`", value="notice command", inline=True)
+        embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
         embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
         embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
 
