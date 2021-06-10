@@ -20,9 +20,6 @@ class WintChoco(commands.Cog):
             embed.set_image(url="https://ak.picdn.net/shutterstock/videos/1014557474/thumb/1.jpg")
             await ctx.send(embed=embed)
         else:
-            return None
-
-    @wint_choco.error
-    async def choco_error(self, ctx, error):
-        embed = discord.Embed(title="Error!", descroption=f"{error} is not found!", color=self.embed_color)
-        await ctx.send(embed=embed)
+            embed = discord.Embed(title="Error!", descroption=f"{error} is not found!", color=self.embed_color)
+            await ctx.send(embed=embed)
+        
