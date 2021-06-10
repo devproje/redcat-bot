@@ -6,7 +6,7 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-shell_version="v0.1.0"
+shell_version="v0.1.1"
 version="v0.3.0"
 
 bot = commands.Bot(command_prefix="\\", help_command=None)
@@ -28,7 +28,8 @@ for filename in os.listdir("Cogs"):
 @bot.event
 async def on_ready():
     print(f"ProjectBot shell {shell_version}\n")
-    print("Logined for ProjectBot shell!\n")
+    print("Logined for ProjectBot shell!")
+    print("If you unknown command, please type 'help'.")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
 
     while True:
@@ -38,11 +39,15 @@ async def on_ready():
         elif shell_command == "clear":
             os.system("clear")
         elif shell_command == "help":
-            print("reboot")
-            print("clear")
-            print("help")
+            print("reboot: Reboot this bot")
+            print("clear: Clear window")
+            print("version: Showing version")
+            print("help: Help command")
+        elif shell_command == "version":
+            print(f"Version: {version}")
+            print(f"Shell verison: {shell_version}")
         else:
-            print(f"{shell_command} command is unavaliable\n")
+            print(f"{shell_command} command is unavaliable")
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
