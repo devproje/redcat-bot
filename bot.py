@@ -9,6 +9,8 @@ token = open_token.read().split()[0]
 shell_version="v0.1.1"
 version="v0.3.0"
 
+embed_color = 0x75B8FF
+
 bot = commands.Bot(command_prefix="\\", help_command=None)
 
 def check_user(name, id):
@@ -48,6 +50,17 @@ async def on_ready():
             print(f"Shell verison: {shell_version}")
         else:
             print(f"{shell_command} command is unavaliable")
+
+@bot.command(name="version")
+async def version(ctx):
+    embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=embed_color)
+    embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+    embed.add_field(f"Version: {version}")
+    embed.add_field(f"Shell Version: {shell_version}")
+    embed.add_field(f"Author: Project_TL#9436")
+    embed.add_field(f"Contributers: None")
+
+    await ctx.channel.send(embed=embed)
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
