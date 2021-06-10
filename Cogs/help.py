@@ -13,7 +13,6 @@ class Help(commands.Cog):
     @commands.command(name="help")
     async def help(self, ctx):
         embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
@@ -26,5 +25,6 @@ class Help(commands.Cog):
         embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
         embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
         embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
-
+        
+        embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
