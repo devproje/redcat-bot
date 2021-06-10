@@ -1,4 +1,3 @@
-from sys import version
 import discord, os, asyncio
 from discord.ext import commands
 
@@ -35,7 +34,7 @@ async def on_ready():
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=embed_color)
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-    embed.add_field(name=f"**Version**", value=f"{str(version)}", inline=False)
+    embed.add_field(name=f"**Version**", value=f"{version}", inline=False)
     embed.add_field(name=f"**Author**", value="Project_TL#9436", inline=False)
     embed.add_field(name=f"**Contributers**", value="None", inline=False)
 
