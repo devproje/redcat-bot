@@ -29,6 +29,7 @@ async def on_ready():
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
     print(f"name: {ctx.author.name}, id: {ctx.author.id}")
+    os.system("git pull origin master")
 
     # if check_user(ctx.author.name, ctx.author.id):
     if extension is None:
