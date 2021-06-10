@@ -27,5 +27,5 @@ class Help(commands.Cog):
         embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
         embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
         
-        embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"{ctx.author.name}{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)

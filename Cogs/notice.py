@@ -12,5 +12,5 @@ class Notice(commands.Cog):
     @commands.command(name="notice")
     async def notice(self, ctx, text):
         embed = discord.Embed(title=":satellite: Notice!", description=text, color=self.embed_color)
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"{ctx.author.name}{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
