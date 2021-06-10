@@ -1,9 +1,13 @@
+from sys import version
 import discord, os, asyncio
 from discord.ext import commands
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
+
+shell_version="v0.1.0"
+version="v0.3.0"
 
 bot = commands.Bot(command_prefix="\\", help_command=None)
 
@@ -23,12 +27,21 @@ for filename in os.listdir("Cogs"):
 
 @bot.event
 async def on_ready():
-    print("Logined!")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ProjectBot v0.2.1"))
+    print(f"ProjectBot shell {shell_version}\n")
+    print("Logined for ProjectBot shell!\n")
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {version}"))
 
-    shell_command = input("Project_Bot>")
+    shell_command = input("ProjectBot>")
     if shell_command == "reboot":
         exit()
+    elif shell_command == "clear":
+        os.system("clear")
+    elif shell_command == "help":
+        print("reboot")
+        print("clear")
+        print("help")
+    else:
+        print(f"{shell_command} command is unavaliable\n")
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
