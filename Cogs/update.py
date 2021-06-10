@@ -13,5 +13,5 @@ class Update(commands.Cog):
     async def update_code(self, ctx):
         os.system("git pull origin master")
         embed = discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
-        embed.set_footer(text=f"{ctx.author.name}{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)

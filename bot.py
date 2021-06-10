@@ -32,11 +32,11 @@ async def on_ready():
 @bot.command(name="version")
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=embed_color)
-    embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
     embed.add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
     embed.add_field(name=f"**Author**", value="Project_TL#9436", inline=True)
     embed.add_field(name=f"**Contributers**", value="None", inline=True)
-
+    
+    embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
     await ctx.channel.send(embed=embed)
 
 @bot.command(name="reload")
