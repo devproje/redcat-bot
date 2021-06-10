@@ -19,7 +19,9 @@ async def on_ready():
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
-    if check_id(ctx.author.id):
+    print(f"name: {ctx.author.name}, id: {ctx.author.id}")
+
+    if check_id(ctx.author.name, ctx.author.id):
         if extension is None:
             for filename in os.listdir("Cogs"):
                 if filename.endswith(".py"):
