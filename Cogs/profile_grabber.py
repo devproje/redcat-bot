@@ -11,7 +11,7 @@ class ProfileGrabber(commands.Cog):
         self.embed_color = 0x75B8FF
 
     @commands.command(name="profile")
-    async def profile(self, ctx, member: discord.User = None or discord.User.mention):
+    async def profile(self, ctx, member: discord.User = None or discord.User.mention == None):
         member = member or ctx.author
         embed = discord.Embed(title=f"**{member.display_name}#{member.discriminator}**'s Profile image!", color=self.embed_color)
         embed.set_image(url=member.avatar_url)
