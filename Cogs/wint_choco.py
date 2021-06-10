@@ -9,7 +9,7 @@ class WintChoco(commands.Cog):
         self.bot = bot
         self.embed_color = 0x75B8FF
 
-    @commands.command("wintchoco")
+    @commands.command(name="wintchoco")
     async def wint_choco(self, ctx, wincho_action):
         if wincho_action == "smash":
             embed = discord.Embed(description="**윈초 부수기!**", color=self.embed_color)
