@@ -12,13 +12,22 @@ class LoadUnload(commands.Cog):
 
     @commands.command(name="load")
     async def load(self, ctx, extension):
-        # ctx.send("You're not bot owner!")
-        self.bot.load_extension(f"Cogs.{extension}")
-        await ctx.send(f":white_check_mark: {extension} has successful loaded!")
+        if ctx.author.id != 415801068174180352:
+            self.bot.load_extension(f"Cogs.{extension}")
+            embed = discord.Embed(title=f":stop_sign: Error!", description=f"You can't loaded {extension}!\nBecause you're not bot owner!")
+            await ctx.send(embed=embed)
+        else:
+            self.bot.load_extension(f"Cogs.{extension}")
+            embed = discord.Embed(title=f":white_check_mark: Done!", description=f"{extension} has successful loaded!")
+            await ctx.send(embed=embed)
 
 
     @commands.command(name="unload")
     async def unload(self, ctx, extension):
-        # await ctx.send("You're not bot owner!")
-        self.bot.unload_extension(f"Cogs.{extension}")
-        await ctx.send(f":stop_sign: {extension} has successful unloaded!")
+        if ctx.author.id != 415801068174180352:
+            embed = discord.Embed(title=f":stop_sign: Error!", description=f"You can't unloaded {extension}!\nBecause you're not bot owner!")
+            await ctx.send(embed=embed)
+        else:
+            self.bot.unload_extension(f"Cogs.{extension}")
+            embed = discord.Embed(title=f":white_check_mark: Done!", description=f"{extension} has successful unloaded!")
+            await ctx.send(embed=embed)

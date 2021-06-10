@@ -11,7 +11,12 @@ class Update(commands.Cog):
 
     @commands.command(name="update")
     async def update_code(self, ctx):
-        os.system("git pull origin master")
-        embed = discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
-        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-        await ctx.channel.send(embed=embed)
+        if ctx.author.id != 415801068174180352:
+            embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.channel.send(embed=embed)
+        else:
+            os.system("git pull origin master")
+            embed = discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.channel.send(embed=embed)
