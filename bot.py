@@ -36,19 +36,21 @@ async def unload(ctx, extension):
 
 @bot.command(name="reload")  # 1
 async def reload_commands(ctx, extension=None):
-    os.system("git pull origin master")
+    if ctx.author.id == "415801068174180352":
+        if extension is None:  # 3
+            for filename in os.listdir("Cogs"):
+                if filename.endswith(".py"):
+                    bot.unload_extension(f"Cogs.{filename[:-3]}")
+                    bot.load_extension(f"Cogs.{filename[:-3]}")
 
-    if extension is None:  # 3
-        for filename in os.listdir("Cogs"):
-            if filename.endswith(".py"):
-                bot.unload_extension(f"Cogs.{filename[:-3]}")
-                bot.load_extension(f"Cogs.{filename[:-3]}")
+            await ctx.send(":white_check_mark: reload complete!")
 
-        await ctx.send(":white_check_mark: reload complete!")
+        else:  # 4
+            bot.unload_extension(f"Cogs.{extension}")  # 5
+            bot.load_extension(f"Cogs.{extension}")
+            await ctx.send(f":white_check_mark: {extension} has reloaded!")    
 
-    else:  # 4
-        bot.unload_extension(f"Cogs.{extension}")  # 5
-        bot.load_extension(f"Cogs.{extension}")
-        await ctx.send(f":white_check_mark: {extension} has reloaded!")    
+    else:
+        await ctx.send(":stop_sign: Error!")
 
 bot.run(token)

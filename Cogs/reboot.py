@@ -12,7 +12,10 @@ class Reboot(commands.Cog):
 
     @commands.command(name="reboot")
     async def reboot(self, ctx):
-        embed = discord.Embed(title=":repeat: Reboot", description="**Please wait just more secs!**\nDiscord bot rebooting...", color=0xFF0000)
-        embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
-        exit()
+        if ctx.author.id == "415801068174180352":
+            embed = discord.Embed(title=":repeat: Reboot", description="**Please wait just more secs!**\nDiscord bot rebooting...", color=0xFF0000)
+            await ctx.send(embed=embed)
+            exit()
+        else:
+            embed = discord.Embed(title=":repeat: Reboot Error!", description="**You're not administrator**", color=0xFF0000)
+            await ctx.send(embed=embed)
