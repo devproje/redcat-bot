@@ -21,8 +21,3 @@ class WintChoco(commands.Cog):
             await ctx.send(embed=embed)
         else:
             return None
-
-    @wint_choco.error
-    async def choco_error(self, ctx, error):
-        embed = discord.Embed(title="Error!", descroption=f"{error} is not found!", color=self.embed_color)
-        await ctx.send(embed=embed)
