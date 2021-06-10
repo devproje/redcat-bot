@@ -35,9 +35,9 @@ async def on_ready():
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Help**", description="This is command list", color=embed_color)
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-    embed.add_field(f"Version: {version}")
-    embed.add_field(f"Author: Project_TL#9436")
-    embed.add_field(f"Contributers: None")
+    embed.add_field(name=f"**Version**", value="{version}", inline=False)
+    embed.add_field(name=f"**Author**", value="Project_TL#9436", inline=False)
+    embed.add_field(name=f"**Contributers**", value="None", inline=False)
 
     await ctx.channel.send(embed=embed)
 
