@@ -19,7 +19,6 @@ class Help(commands.Cog):
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
     
-    @commands.command(name="help")
     async def owner_help(self, ctx, owner_command):
         embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
@@ -36,8 +35,6 @@ class Help(commands.Cog):
             embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
             embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
 
-            await ctx.channel.send(embed=embed)
-        elif owner_command == None:
-            await ctx.channel.send(embed=embed)
+            await ctx.channel.send(embed=embed)     
         else:
             return None
