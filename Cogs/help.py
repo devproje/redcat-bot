@@ -17,7 +17,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
         embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
-        embed.add_field(name="**Bot owner command**", value="This command only can use with bot owner", inline=False)
+        embed.add_field(name="**Bot owner command** (Comming soon)", value="This command only can use with bot owner", inline=False)
         embed.add_field(name="`\\reboot`", value="Reboot command\n**Update bot only**", inline=True)
         embed.add_field(name="`\\reload`", value="Reload command", inline=True)
         embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
