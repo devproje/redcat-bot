@@ -32,7 +32,6 @@ async def version(ctx):
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
     if ctx.author.id == 415801068174180352:
-        os.system("git pull origin master")
         if extension is None:
             for filename in os.listdir("Cogs"):
                 if filename.endswith(".py"):
