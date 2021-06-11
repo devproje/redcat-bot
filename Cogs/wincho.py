@@ -48,11 +48,11 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: Wincho help", descroption="`\\wincho <burn | smash | melt | call>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: Wincho help", description="`\\wincho <burn | smash | melt | call>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="Error!", descroption=f"{wincho_action} is not found!", color=self.embed_color)
+            embed = discord.Embed(title="Error!", description=f"{wincho_action} is not found!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
@@ -76,10 +76,10 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", descroption="`\\윈초 <녹이기 | 부수기 | 녹이기 | 부르기>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`\\윈초 <녹이기 | 부수기 | 녹이기 | 부르기>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="오류발생!", descroption=f"{wincho_action}은(는) 존재하지 않습니다!", color=self.embed_color)
+            embed = discord.Embed(title="오류발생!", description=f"{wincho_action}은(는) 존재하지 않습니다!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
