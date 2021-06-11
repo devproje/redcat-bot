@@ -34,4 +34,4 @@ class Help(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
         await ctx.channel.send(embed=embed)
-        await ctx.message.add_reaction(852840669457809408)
+        await ctx.message.add_reaction(":thumbsup_tone1:")
