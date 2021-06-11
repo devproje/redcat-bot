@@ -4,7 +4,6 @@ from discord.ext import commands
 def setup(bot):
     bot.add_cog(WinCho(bot))
 
-
 def wincho_mention(mention_type):
     mention = "<@!602733713842896908>"
     if mention_type == 0:
@@ -19,7 +18,6 @@ def wincho_mention(mention_type):
         return f"{mention} 윈초 빼애애애애액"
     elif mention_type == 5:
         return f"{mention} 윈트초코 뭐해?"
-
 
 class WinCho(commands.Cog):
     def __init__(self, bot):
