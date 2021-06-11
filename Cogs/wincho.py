@@ -29,7 +29,7 @@ class WinCho(commands.Cog):
         self.burning = "http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0"
 
     @commands.command(name="wincho")
-    async def wincho(self, ctx, wincho_action):
+    async def wincho(self, ctx, wincho_action=None):
         if wincho_action == "smash":
             embed = discord.Embed(description="**Smashing Wincho!**", color=self.embed_color)
             embed.set_image(url=self.smashing)
@@ -48,7 +48,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`\\윈초` `<녹이기 | 부수기 | 녹이기 | 부르기>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: Wincho help", description="`\\wincho` `<burn | smash | melt | call>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
