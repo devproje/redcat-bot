@@ -43,7 +43,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "call":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 6)))
+            await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "burn":
             embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
             embed.set_image(url=self.burning)
@@ -71,7 +71,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "부르기":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 6)))
+            await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "태우기":
             embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
             embed.set_image(url=self.burning)
