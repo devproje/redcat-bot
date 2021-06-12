@@ -43,7 +43,11 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "call":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
+            if ctx.author.id != 415801068174180352:
+                embed = discord.Embed(title=":no_entry: Execute Error!", description="**This command is only use bot owner!**", color=self.embed_color)
+                await ctx.send(embed=embed)
+            else:
+                await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "burn":
             embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
             embed.set_image(url=self.burning)
@@ -71,7 +75,11 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "부르기":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
+            if ctx.author.id != 415801068174180352:
+                embed = discord.Embed(title=":no_entry: Execute Error!", description="**This command is only use bot owner!**", color=self.embed_color)
+                await ctx.send(embed=embed)
+            else:
+                await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "태우기":
             embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
             embed.set_image(url=self.burning)
