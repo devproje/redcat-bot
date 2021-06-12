@@ -12,9 +12,9 @@ class ChatCleaner(commands.Cog):
     @commands.command(name="clear")
     async def chat_cleaner(self, ctx, amount: int = None):
         if ctx.author.id == 415801068174180352 or ctx.author.guild_permissions.administrator:
-            if amount > 1:
-                await ctx.channel.purge(limit=amount)
+            if amount > 1 or amount == None:
                 embed = discord.Embed(title=":white_check_mark: **Chat Removed**", description=f"{amount} chats is removed!", color=self.embed_color)
+                await ctx.channel.purge(limit=2)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             elif amount == 1:
