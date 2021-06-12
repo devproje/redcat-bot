@@ -18,6 +18,8 @@ def wincho_mention(mention_type):
         return f"{mention} 윈초 빼애애애애액"
     elif mention_type == 5:
         return f"{mention} 윈트초코 뭐해?"
+    elif mention_type == 6:
+        return f"{mention}{mention}{mention}{mention}{mention}{mention}{mention}{mention}{mention}"
 
 class WinCho(commands.Cog):
     def __init__(self, bot):
@@ -41,7 +43,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "call":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 5)))
+            await ctx.channel.send(wincho_mention(random.randrange(0, 6)))
         elif wincho_action == "burn":
             embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
             embed.set_image(url=self.burning)
@@ -69,7 +71,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "부르기":
-            await ctx.channel.send(wincho_mention(random.randrange(0, 5)))
+            await ctx.channel.send(wincho_mention(random.randrange(0, 6)))
         elif wincho_action == "태우기":
             embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
             embed.set_image(url=self.burning)
