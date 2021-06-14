@@ -23,6 +23,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\profile <None or mention or id>`", value="You can grab target person's avatar image", inline=True)
         embed.add_field(name="`\\clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
         embed.add_field(name="`\\music help`", value="You can see music command options!", inline=True)
+        embed.add_field(name="`\\meme`", value="You can see meme image!", inline=True)
 
         if ctx.author.id != 415801068174180352:
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
@@ -33,7 +34,8 @@ class Help(commands.Cog):
             embed.add_field(name="`\\notice <text>`", value="notice command", inline=True)
             embed.add_field(name="`\\load <extension_name>`", value="You can load command", inline=True)
             embed.add_field(name="`\\unload <extension_name>`", value="You can unload command", inline=True)
-            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            embed.add_field(name="`\\push`", value="You can push instance code", inline=True)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)  
         
         await ctx.channel.send(embed=embed)
         await ctx.message.add_reaction("\:thumbsup_tone1:")

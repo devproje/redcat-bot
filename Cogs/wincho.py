@@ -21,36 +21,44 @@ def wincho_mention(mention_type):
     elif mention_type == 6:
         return f"{mention}{mention}{mention}{mention}{mention}{mention}{mention}{mention}{mention}"
 
+def get_image(image_type):
+    if image_type == 0:
+        return "https://ak.picdn.net/shutterstock/videos/1014557474/thumb/1.jpg"
+    elif image_type == 1:
+        return "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg"
+    elif image_type == 2:
+        return "http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0"
+    else:
+        return None
+
 class WinCho(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0xFFF1D6
 
-        self.melting = "https://ak.picdn.net/shutterstock/videos/1014557474/thumb/1.jpg"
-        self.smashing = "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg"
-        self.burning = "http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0"
+        self.author_id = 415801068174180352
 
     @commands.command(name="wincho")
     async def wincho(self, ctx, wincho_action=None):
         if wincho_action == "smash":
             embed = discord.Embed(description="**Smashing Wincho!**", color=self.embed_color)
-            embed.set_image(url=self.smashing)
+            embed.set_image(url=get_image(1))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "melt":
             embed = discord.Embed(description="**Melting Wincho!**", color=self.embed_color)
-            embed.set_image(url=self.melting)
+            embed.set_image(url=get_image(0))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "call":
-            if ctx.author.id != 415801068174180352:
-                embed = discord.Embed(title=":no_entry: Execute Error!", description="**This command is only use bot owner!**", color=self.embed_color)
+            if ctx.author.id != self.author_id:
+                embed = discord.Embed(title=":no_entry: **Execute Error!**", description="**This command is only use bot owner!**", color=self.embed_color)
                 await ctx.send(embed=embed)
             else:
                 await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "burn":
             embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
-            embed.set_image(url=self.burning)
+            embed.set_image(url=get_image(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
@@ -66,23 +74,23 @@ class WinCho(commands.Cog):
     async def wincho_korean(self, ctx, wincho_action=None):
         if wincho_action == "부수기":
             embed = discord.Embed(description="**윈초 부수기!**", color=self.embed_color)
-            embed.set_image(url=self.smashing)
+            embed.set_image(url=get_image(1))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "녹이기":
             embed = discord.Embed(description="**윈초 녹이기!**", color=self.embed_color)
-            embed.set_image(url=self.melting)
+            embed.set_image(url=get_image(0))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action == "부르기":
-            if ctx.author.id != 415801068174180352:
+            if ctx.author.id != self.author_id:
                 embed = discord.Embed(title=":no_entry: Execute Error!", description="**This command is only use bot owner!**", color=self.embed_color)
                 await ctx.send(embed=embed)
             else:
                 await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "태우기":
             embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
-            embed.set_image(url=self.burning)
+            embed.set_image(url=get_image(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
@@ -90,6 +98,6 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="오류발생!", description=f"{wincho_action}은(는) 존재하지 않습니다!", color=self.embed_color)
+            embed = discord.Embed(title=":no_entry: **오류발생!**", description=f"{wincho_action}은(는) 존재하지 않습니다!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
