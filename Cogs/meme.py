@@ -13,6 +13,8 @@ def image_selector(number):
         return "http://projecttl.net:8080/s/T3e9ZCzBBzGgy4H/download/Nuclear.gif"
     elif number == 3:
         return "http://projecttl.net:8080/s/aJCjtazJYWJpBo8/download/boom.gif"
+    elif number == 4:
+        return "https://app.jjalbang.today/jjv1Ys.gif"
 
 class Mime(commands.Cog):
     def __init__(self, bot):
@@ -38,6 +40,11 @@ class Mime(commands.Cog):
         elif argument == "극장폭파":
             embed = discord.Embed(description="**:boom: 극장 폭파**", color=self.embed_color)
             embed.set_image(url=image_selector(3))
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+        elif argument == "고자라니":
+            embed = discord.Embed(description="**:no_entry: 심영짤**", color=self.embed_color)
+            embed.set_image(url=image_selector(4))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
