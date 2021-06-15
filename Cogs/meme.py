@@ -17,6 +17,7 @@ def image_selector(number):
 class Mime(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.embed_color = 0x75B8FF
 
     @commands.command(name="meme")
     async def _meme(self, ctx, argument=None):
@@ -31,7 +32,7 @@ class Mime(commands.Cog):
             await ctx.send(embed=embed)
         elif argument == "핵폭탄":
             embed = discord.Embed(description="**:boom: 핵 폭발!**", color=self.embed_color)
-            embed.set_image(url=image_selector(1))
+            embed.set_image(url=image_selector(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
