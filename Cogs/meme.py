@@ -37,7 +37,7 @@ class Mime(commands.Cog):
             await ctx.send(embed=embed)
         elif argument == "극장폭파":
             embed = discord.Embed(description="**:boom: 극장 폭파**", color=self.embed_color)
-            embed.set_image(url=image_selector(2))
+            embed.set_image(url=image_selector(3))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
