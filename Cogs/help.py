@@ -9,6 +9,7 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0x75B8FF
+        self.author_id=415801068174180352
 
     @commands.command(name="help")
     async def help(self, ctx):
@@ -25,7 +26,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\music help`", value="You can see music command options!", inline=True)
         embed.add_field(name="`\\meme`", value="You can see meme image!", inline=True)
 
-        if ctx.author.id != 415801068174180352:
+        if ctx.author.id != self.author_id:
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         else:
             embed.add_field(name="**Bot owner command**", value="This command only can use with bot owner", inline=False)
@@ -38,4 +39,3 @@ class Help(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)  
         
         await ctx.channel.send(embed=embed)
-        await ctx.message.add_reaction("\:thumbsup_tone1:")
