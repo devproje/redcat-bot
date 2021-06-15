@@ -14,7 +14,7 @@ def image_selector(number):
     elif number == 3:
         return "http://projecttl.net:8080/s/aJCjtazJYWJpBo8/download/boom.gif"
     elif number == 4:
-        return "https://app.jjalbang.today/jjv1Ys.gif"
+        return "http://i.imgur.com/DHshyTY.gif"
 
 class Mime(commands.Cog):
     def __init__(self, bot):
