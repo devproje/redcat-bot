@@ -28,6 +28,8 @@ def get_image(image_type):
         return "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg"
     elif image_type == 2:
         return "http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0"
+    elif image_type == 3:
+        return "http://projecttl.net:8080/apps/files_sharing/publicpreview/2JBi9iQxEg3SMSM?x=1348&y=315&a=true&file=%25EC%259C%2588%25EC%25B4%2588%25EB%25A5%25BC%2520%25EB%2585%25B9%25EC%259D%25B4%25EB%258A%2594%2520%25ED%2594%2584%25EC%25A0%259D%25EC%259D%2598%2520%25EB%259D%25BC%25EC%259D%25B4%25ED%2584%25B0.png&scalingup=0"
     else:
         return None
 
@@ -61,8 +63,13 @@ class WinCho(commands.Cog):
             embed.set_image(url=get_image(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
+        elif wincho_action == "프젝기술":
+            embed = discord.Embed(description="**윈초야 이리와 녹여줄게!**", color=self.embed_color)
+            embed.set_image(url=get_image(3))
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: Wincho help", description="`\\wincho` `<burn | smash | melt | call>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: Wincho help", description="`\\wincho` `<burn | smash | melt | call | 프젝기술>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
@@ -93,8 +100,13 @@ class WinCho(commands.Cog):
             embed.set_image(url=get_image(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
+        elif wincho_action == "프젝기술":
+            embed = discord.Embed(description="**윈초야 이리와 녹여줄게!**", color=self.embed_color)
+            embed.set_image(url=get_image(3))
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`\\윈초` `<녹이기 | 부수기 | 녹이기 | 부르기>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`\\윈초` `<녹이기 | 부수기 | 녹이기 | 부르기 | 프젝기술>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
