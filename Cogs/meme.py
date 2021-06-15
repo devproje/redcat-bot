@@ -22,7 +22,7 @@ class Mime(commands.Cog):
     @commands.command(name="meme")
     async def _meme(self, ctx, argument=None):
         if argument is None:
-            embed = discord.Embed(title=":question: 밈 도움말", description="`\\meme` `<정의의후폭풍 | 핵폭탄>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: 밈 도움말", description="`\\meme` `<정의의후폭풍 | 핵폭탄 | 극장폭파>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif argument == "정의의후폭풍":
@@ -32,6 +32,11 @@ class Mime(commands.Cog):
             await ctx.send(embed=embed)
         elif argument == "핵폭탄":
             embed = discord.Embed(description="**:boom: 핵 폭발!**", color=self.embed_color)
+            embed.set_image(url=image_selector(2))
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
+        elif argument == "극장폭파":
+            embed = discord.Embed(description="**:boom: 극장 폭파**", color=self.embed_color)
             embed.set_image(url=image_selector(2))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
