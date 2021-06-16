@@ -1,5 +1,4 @@
-import discord, asyncio
-from discord import embeds
+import discord
 from discord.ext import commands
 
 def setup(bot):

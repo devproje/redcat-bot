@@ -1,4 +1,4 @@
-import discord, os, asyncio
+import discord
 from discord import embeds
 from discord.ext import commands
 

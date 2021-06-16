@@ -1,4 +1,3 @@
-import discord, asyncio
 from discord.ext import commands
 
 def setup(bot):

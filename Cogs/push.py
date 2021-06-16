@@ -1,4 +1,4 @@
-import discord, os, asyncio
+import discord, os
 from discord.ext import commands
 
 def setup(bot):
