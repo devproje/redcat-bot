@@ -23,7 +23,7 @@ class Help(commands.Cog):
         embed.add_field(name="`\\profile <None or mention or id>`", value="You can grab target person's avatar image", inline=True)
         embed.add_field(name="`\\clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
         embed.add_field(name="`\\music help`", value="You can see music command options!", inline=True)
-        embed.add_field(name="`\\meme`", value="You can see meme image!", inline=True)
+        embed.add_field(name="`\\meme`", value="You can use Project_TL's meme image!", inline=True)
 
         if ctx.author.id != self.author_id:
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
