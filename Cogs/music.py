@@ -132,16 +132,14 @@ class Song:
         self.source = source
         self.requester = source.requester
 
-    def create_embed(self, ctx):
-        embed = (discord.Embed(title='Now playing',
-                               description='```css\n{0.source.title}\n```'.format(self),
-                               color=discord.Color.blurple())
-                 .add_field(name='Duration', value=self.source.duration)
-                 .add_field(name='Requested by', value=self.requester.mention)
-                 .add_field(name='Uploader', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
-                 .add_field(name='URL', value='[Click]({0.source.url})'.format(self))
-                 .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-                 .set_thumbnail(url=self.source.thumbnail))
+    def create_embed(self, name, tag, icon_url):
+        embed = (discord.Embed(title='Now playing', description='```css\n{0.source.title}\n```'.format(self), color=discord.Color.blurple())
+                .add_field(name='Duration', value=self.source.duration)
+                .add_field(name='Requested by', value=self.requester.mention)
+                .add_field(name='Uploader', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
+                .add_field(name='URL', value='[Click]({0.source.url})'.format(self))
+                .set_footer(text=f"{name}#{tag}", icon_url=icon_url)
+                .set_thumbnail(url=self.source.thumbnail))
 
         return embed
 
@@ -346,9 +344,9 @@ class Music(commands.Cog):
     @commands.command(name='now', aliases=['current', 'playing'])
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
-        embed=ctx.voice_state.current.create_embed()
+        
 
-        await ctx.send(embed=embed)
+        await ctx.send(embed=ctx.voice_state.current.create_embed(name=ctx.author.name, tag=ctx.author.discriminator, icon_url=ctx.author.avatar_url))
 
     @commands.command(name='pause')
     @commands.has_permissions(manage_guild=True)
