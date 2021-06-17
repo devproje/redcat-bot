@@ -450,9 +450,7 @@ class Music(commands.Cog):
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
                 await ctx.voice_state.songs.put(song)
-
                 await ctx.send(embed=successful_embed)
-                await self._now(ctx=ctx)
 
     @_join.before_invoke
     @_play.before_invoke
