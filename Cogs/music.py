@@ -344,8 +344,6 @@ class Music(commands.Cog):
     @commands.command(name='now', aliases=['current', 'playing'])
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
-        
-
         await ctx.send(embed=ctx.voice_state.current.create_embed(name=ctx.author.name, tag=ctx.author.discriminator, icon_url=ctx.author.avatar_url))
 
     @commands.command(name='pause')
@@ -450,9 +448,12 @@ class Music(commands.Cog):
                 song = Song(source)
                 successful_embed=(discord.Embed(title=":white_check_mark: **Queue Successful!**", description=f"Enqueued {str(source)}", color=self.embed_color)
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+                now_embed=ctx.voice_state.current.create_embed(name=ctx.author.name, tag=ctx.author.discriminator, icon_url=ctx.author.avatar_url)
 
                 await ctx.voice_state.songs.put(song)
+
                 await ctx.send(embed=successful_embed)
+                await ctx.send(embed=now_embed)
 
     @_join.before_invoke
     @_play.before_invoke
