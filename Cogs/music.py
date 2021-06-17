@@ -344,10 +344,11 @@ class Music(commands.Cog):
         await ctx.send('Volume of the player set to {}%'.format(volume))
 
     @commands.command(name='now', aliases=['current', 'playing'])
-    async def _now(self, ctx):
+    async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
+        embed=ctx.voice_state.current.create_embed()
 
-        await ctx.send(embed=ctx.voice_state.current.create_embed())
+        await ctx.send(embed=embed)
 
     @commands.command(name='pause')
     @commands.has_permissions(manage_guild=True)
