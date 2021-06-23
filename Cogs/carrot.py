@@ -9,5 +9,6 @@ class Carrot(commands.Cog):
 
     @commands.command(name="carrot")
     async def carrot(self, ctx):
+        await ctx.channel.purge(limit=1)
         await ctx.message.add_reaction("✅")
         await ctx.send(":carrot:")
