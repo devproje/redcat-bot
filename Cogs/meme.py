@@ -56,12 +56,12 @@ class Mime(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif argument == "의사양반":
-            embed = discord.Embed(description="**:no_entry: Ah.. 안심하세요, 병원이에요.**", color=self.embed_color)
+            embed = discord.Embed(description="**:no_entry: Aㅏ 안심하시오, 병원이오.**", color=self.embed_color)
             embed.set_image(url=image_selector(5))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif argument == "의사양반2":
-            embed = discord.Embed(description="**:no_entry: Ah.. 안심하세요, 병원이에요.**", color=self.embed_color)
+            embed = discord.Embed(description="**:no_entry: Aㅏ 안심하시오, 병원이오.**", color=self.embed_color)
             embed.set_image(url=image_selector(6))
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
