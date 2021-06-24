@@ -8,10 +8,11 @@ class ChatCleaner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0x75B8FF
+        self.owner_id = 415801068174180352
 
     @commands.command(name="clear")
     async def chat_cleaner(self, ctx, amount: int = None):
-        if ctx.author.id == 415801068174180352 or ctx.author.guild_permissions.administrator:
+        if ctx.author.id == self.owner_id or ctx.author.guild_permissions.administrator:
             if amount < 301 and amount > 1:
                 embed = discord.Embed(title=":white_check_mark: **Chat Removed**", description=f"{amount} chats is removed!", color=self.embed_color)
                 await ctx.channel.purge(limit=amount + 2)
