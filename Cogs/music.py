@@ -285,7 +285,6 @@ class Music(commands.Cog):
                 .add_field(name="`\\resume`", value="Resume music", inline=True)
                 .add_field(name="`\\now`", value="Checking playing music", inline=True)
                 .add_field(name="`\\queue`", value="Checking play list", inline=True)
-                .add_field(name="`\\volume <float>`", value="Set music volume", inline=True)
                 .add_field(name="`\\stop`", value="Stop all music", inline=True)
                 .add_field(name="`\\skip`", value="Skip current music", inline=True)
                 .add_field(name="`\\shuffle`", value="Shuffle current queue", inline=True)
@@ -330,19 +329,6 @@ class Music(commands.Cog):
 
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
-
-    @commands.command(name='volume')
-    async def _volume(self, ctx: commands.Context, *, volume: int):
-        """Sets the volume of the player."""
-
-        if not ctx.voice_state.is_playing:
-            return await ctx.send('Nothing being played at the moment.')
-
-        if 0 > volume > 100:
-            return await ctx.send('Volume must be between 0 and 100')
-
-        ctx.voice_state.volume = volume / 100
-        await ctx.send('Volume of the player set to {}%'.format(volume))
 
     @commands.command(name='now', aliases=['current', 'playing'])
     async def _now(self, ctx: commands.Context):
