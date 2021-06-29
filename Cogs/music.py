@@ -250,6 +250,8 @@ class Music(commands.Cog):
         self.bot = bot
         self.voice_states = {}
 
+        self.embed_color = 0x75B8FF
+
     def get_voice_state(self, ctx: commands.Context):
         state = self.voice_states.get(ctx.guild.id)
         if not state:
