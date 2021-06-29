@@ -132,14 +132,15 @@ class Song:
         self.source = source
         self.requester = source.requester
 
-    def create_embed(self, name, tag, icon_url):
-        embed = (discord.Embed(title='Now playing', description='```css\n{0.source.title}\n```'.format(self), color=discord.Color.blurple())
-                .add_field(name='Duration', value=self.source.duration)
-                .add_field(name='Requested by', value=self.requester.mention)
-                .add_field(name='Uploader', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
-                .add_field(name='URL', value='[Click]({0.source.url})'.format(self))
-                .set_footer(text=f"{name}#{tag}", icon_url=icon_url)
-                .set_thumbnail(url=self.source.thumbnail))
+    def create_embed(self):
+        embed = (discord.Embed(title='Now playing',
+                               description='```css\n{0.source.title}\n```'.format(self),
+                               color=discord.Color.blurple())
+                 .add_field(name='Duration', value=self.source.duration)
+                 .add_field(name='Requested by', value=self.requester.mention)
+                 .add_field(name='Uploader', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
+                 .add_field(name='URL', value='[Click]({0.source.url})'.format(self))
+                 .set_thumbnail(url=self.source.thumbnail))
 
         return embed
 
@@ -231,6 +232,8 @@ class VoiceState:
         self.next.set()
 
     def skip(self):
+        self.skip_votes.clear()
+
         if self.is_playing:
             self.voice.stop()
 
@@ -246,8 +249,6 @@ class Music(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.voice_states = {}
-
-        self.embed_color = 0x75B8FF
 
     def get_voice_state(self, ctx: commands.Context):
         state = self.voice_states.get(ctx.guild.id)
@@ -271,31 +272,7 @@ class Music(commands.Cog):
         ctx.voice_state = self.get_voice_state(ctx)
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
-        await ctx.send('An error occurred: {}'.format(str(error)))
-
-    @commands.command(name="music")
-    async def help(self, ctx, argument=None):
-        if argument == "help":
-            embed = (discord.Embed(title="**Music Help**", description="This is music options!", color=self.embed_color)
-                .add_field(name="`\\play <url or name>`", value="Play music", inline=True)
-                .add_field(name="`\\pause`", value="Pause music", inline=True)
-                .add_field(name="`\\resume`", value="Resume music", inline=True)
-                .add_field(name="`\\now`", value="Checking playing music", inline=True)
-                .add_field(name="`\\queue`", value="Checking play list", inline=True)
-                .add_field(name="`\\volume <float>`", value="Set music volume", inline=True)
-                .add_field(name="`\\stop`", value="Stop all music", inline=True)
-                .add_field(name="`\\skip`", value="Skip current music", inline=True)
-                .add_field(name="`\\shuffle`", value="Shuffle current queue", inline=True)
-                .add_field(name="`\\loop`", value="Loop current music", inline=True)
-                .add_field(name="`\\remove <array_number>`", value="Remove queued target music", inline=True)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            await ctx.send(embed=embed)
-
-        elif argument == None:
-            return None
-
-        else:
-            return None
+        await ctx.send('⛔ | 오류가 발생하였습니다. 상세 내용 : {}'.format(str(error)))
 
     @commands.command(name='join', invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
@@ -323,7 +300,7 @@ class Music(commands.Cog):
     @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         if not ctx.voice_state.voice:
-            return await ctx.send('Not connected to any voice channel.')
+            return await ctx.send('⛔ | 음악을 재생하기에 앞서, 음성 채널에 접속해 주세요.')
 
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
@@ -333,18 +310,19 @@ class Music(commands.Cog):
         """Sets the volume of the player."""
 
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Nothing being played at the moment.')
+            return await ctx.send('⛔ | 오류가 발생하였습니다. 관리자에게 문의해 주세요.')
 
         if 0 > volume > 100:
-            return await ctx.send('Volume must be between 0 and 100')
+            return await ctx.send('⛔ | 소리는 0부터 100 사이여야 합니다.')
 
         ctx.voice_state.volume = volume / 100
-        await ctx.send('Volume of the player set to {}%'.format(volume))
+        await ctx.send('✅ | 사용자의 불륨이 {}%로 지정되었습니다.'.format(volume))
 
     @commands.command(name='now', aliases=['current', 'playing'])
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
-        await ctx.send(embed=ctx.voice_state.current.create_embed(name=ctx.author.name, tag=ctx.author.discriminator, icon_url=ctx.author.avatar_url))
+
+        await ctx.send(embed=ctx.voice_state.current.create_embed())
 
     @commands.command(name='pause')
     @commands.has_permissions(manage_guild=True)
@@ -376,17 +354,15 @@ class Music(commands.Cog):
     @commands.command(name='skip')
     async def _skip(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Not playing any music right now...')
+            return await ctx.send('⛔ | 노래 재생을 정지합니다.')
 
         await ctx.message.add_reaction('⏭')
         ctx.voice_state.skip()
 
-    @commands.command(name='queue', aliases=["q"])
+    @commands.command(name='queue')
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
         if len(ctx.voice_state.songs) == 0:
-            embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            return await ctx.send(embed=embed)
+            return await ctx.send('⛔ | 대기열이 비어있습니다.')
 
         items_per_page = 10
         pages = math.ceil(len(ctx.voice_state.songs) / items_per_page)
@@ -398,28 +374,22 @@ class Music(commands.Cog):
         for i, song in enumerate(ctx.voice_state.songs[start:end], start=start):
             queue += '`{0}.` [**{1.source.title}**]({1.source.url})\n'.format(i + 1, song)
 
-        embed = (discord.Embed(title=":notepad_spiral: **Queue List**", description=f"**Showing {page} page**", color=self.embed_color)
-                .add_field(name='{} tracks:\n\n{}'.format(len(ctx.voice_state.songs), queue), value='page {}/{}'.format(page, pages), inline=True)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-
+        embed = (discord.Embed(description='**{} tracks:**\n\n{}'.format(len(ctx.voice_state.songs), queue))
+                 .set_footer(text='Viewing page {}/{}'.format(page, pages)))
         await ctx.send(embed=embed)
 
     @commands.command(name='shuffle')
     async def _shuffle(self, ctx: commands.Context):
         if len(ctx.voice_state.songs) == 0:
-            embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            return await ctx.send(embed=embed)
+            return await ctx.send('⛔ | 대기열이 비어있습니다.')
 
         ctx.voice_state.songs.shuffle()
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='remove', aliases=["rm"])
+    @commands.command(name='remove')
     async def _remove(self, ctx: commands.Context, index: int):
         if len(ctx.voice_state.songs) == 0:
-            embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            return await ctx.send(embed=embed)
+            return await ctx.send('⛔ | 대기열이 비어있습니다.')
 
         ctx.voice_state.songs.remove(index - 1)
         await ctx.message.add_reaction('✅')
@@ -427,12 +397,12 @@ class Music(commands.Cog):
     @commands.command(name='loop')
     async def _loop(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Nothing being played at the moment.')
+            return await ctx.send('⛔ | 오류가 발생하였습니다. 관리자에게 문의해 주세요.')
 
         ctx.voice_state.loop = not ctx.voice_state.loop
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='play', aliases=["p"])
+    @commands.command(name='play')
     async def _play(self, ctx, *, search: str):
         if not ctx.voice_state.voice:
             await ctx.invoke(self._join)
@@ -441,23 +411,19 @@ class Music(commands.Cog):
             try:
                 source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop)
             except YTDLError as e:
-                embed=(discord.Embed(title=":no_entry: Error!", description=f"An error occurred while processing this request: {str(e)}")
-                    .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-                await ctx.send(embed=embed)
+                await ctx.send('⛔ | 오류가 발생하였습니다. 상세 내용 : {}'.format(str(e)))
             else:
                 song = Song(source)
-                successful_embed=(discord.Embed(title=":white_check_mark: **Queue Successful!**", description=f"Enqueued {str(source)}", color=self.embed_color)
-                    .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
                 await ctx.voice_state.songs.put(song)
-                await ctx.send(embed=successful_embed)
+                await ctx.send('Enqueued {}'.format(str(source)))
 
     @_join.before_invoke
     @_play.before_invoke
     async def ensure_voice_state(self, ctx: commands.Context):
         if not ctx.author.voice or not ctx.author.voice.channel:
-            raise commands.CommandError('You are not connected to any voice channel.')
+            raise commands.CommandError('⛔ | 음악을 재생하기에 앞서, 음성 채널에 접속해 주세요.')
 
         if ctx.voice_client:
             if ctx.voice_client.channel != ctx.author.voice.channel:
-                raise commands.CommandError('Bot is already in a voice channel.')
+                raise commands.CommandError('⛔ | 이미 봇이 다른 음성채널에 접속해 있습니다.')
