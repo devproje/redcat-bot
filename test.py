@@ -10,6 +10,6 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name="test", description="This is just a test command, nothing more.")
-    async def test(self, ctx: SlashContext):
-        await ctx.send(content="Hello World!")
+    @cog_ext.cog_slash(name="test_ping")
+    async def ping(self, ctx: SlashContext):
+        await ctx.send(content="Pong!")
