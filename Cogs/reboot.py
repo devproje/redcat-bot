@@ -21,4 +21,5 @@ class Reboot(commands.Cog):
             exit()
         else:
             embed = discord.Embed(title=":repeat: Reboot Error!", description="**You're not bot owner!**", color=0xFF0000)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)

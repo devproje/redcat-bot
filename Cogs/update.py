@@ -1,4 +1,4 @@
-import discord, os
+import discord, os, subprocess
 from discord.ext import commands
 
 def setup(bot):
@@ -17,9 +17,13 @@ class Update(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.channel.send(embed=embed)
         else:
-            log = os.system("git pull origin master")
+            cmd = ["git", "pull", "origin", "master"]
+            fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
+            data = fd_popen.read().strip()
+            fd_popen.close()
+
             embed = (discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
-                .add_field(name="Git Status", value=f"```sh\n{str(log)}\n```", inline=True))
+                .add_field(name="Git Status", value=f"```sh\n{data}\n```", inline=True))
         
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.channel.send(embed=embed)

@@ -19,6 +19,7 @@ class LoadUnload(commands.Cog):
         else:
             self.bot.load_extension(f"Cogs.{extension}")
             embed = discord.Embed(title=f":white_check_mark: **Done!**", description=f"{extension} has successful loaded!")
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
 
@@ -26,8 +27,10 @@ class LoadUnload(commands.Cog):
     async def unload(self, ctx, extension):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't unloaded {extension}!\nBecause you're not bot owner!")
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
             self.bot.unload_extension(f"Cogs.{extension}")
             embed = discord.Embed(title=f":white_check_mark: **Done!**", description=f"{extension} has successful unloaded!")
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)

@@ -6,10 +6,8 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-bot_version="v0.8.1"
+bot_version="v0.9.0"
 embed_color = 0x75B8FF
-
-owner_id=415801068174180352
 
 bot = commands.Bot(command_prefix="\\", help_command=None)
 
@@ -73,7 +71,9 @@ async def botinfo(ctx):
     embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
     embed.add_field(name="PING", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
 
-    embed.add_field(name="OWNER", value=f"<@!{owner_id}>")
+    embed.add_field(name="OWNER", value=f"Project_TL#9436", inline=True)
+    embed.add_field(name="CONTRIBUTERS", value="None", inline=True)
+    embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
     await ctx.send(embed=embed)
 

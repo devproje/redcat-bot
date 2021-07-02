@@ -1,4 +1,4 @@
-import discord, os
+import discord, os, subprocess
 from discord.ext import commands
 
 def setup(bot):
@@ -15,7 +15,11 @@ class Push(commands.Cog):
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can push code!\nBecause you're not bot owner!")
             await ctx.send(embed=embed)
         else:
-            log = os.system("git push origin master")
-            embed = (discord.Embed(title=f":white_check_mark: **Done!**", description=f"Instance code is pushed!\n```sh{str(log)}\n```")
-                .add_field(name="", value="", inline=True))
+            cmd = ["git", "push", "origin", "master"]
+            fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
+            data = fd_popen.read().strip()
+            fd_popen.close()
+            
+            embed = (discord.Embed(title=f":white_check_mark: **Done!**", description=f"Instance code is pushed!\n```sh\n{data}\n```")
+                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
             await ctx.send(embed=embed)
