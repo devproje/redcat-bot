@@ -1,6 +1,7 @@
 import discord
 from discord import embeds
 from discord.ext import commands
+from discord_slash import cog_ext
 
 def setup(bot):
     bot.add_cog(Reboot(bot))
@@ -12,7 +13,7 @@ class Reboot(commands.Cog):
 
         self.author_id = 415801068174180352
 
-    @commands.command(name="reboot")
+    @cog_ext.cog_slash(name="reboot")
     async def reboot(self, ctx):
         if ctx.author.id == self.author_id:
             embed = discord.Embed(title=":repeat: Reboot", description="**Please wait just more secends!**\nDiscord bot rebooting...", color=0xFF0000)
