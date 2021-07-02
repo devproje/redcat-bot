@@ -1,4 +1,5 @@
 import discord, os, asyncio, psutil, platform
+from datetime import timedelta
 from discord.ext import commands
 
 token_path = "token.txt"
@@ -52,6 +53,12 @@ async def reload_commands(ctx, extension=None):
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
+def get_uptime():
+    with open("/proc/uptime", 'r') as f:
+        uptime_seconds = float(f.readline().split()[0])
+        t = timedelta(seconds = uptime_seconds)
+        return (t.days, t.seconds // 3600, (t.seconds // 60) % 60)
+
 @bot.command(name="status")
 async def botinfo(ctx):
     host = "Hosting by ADP_Community"
@@ -61,7 +68,7 @@ async def botinfo(ctx):
     embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
     embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-    # embed.add_field(value=f"__{psutil.boot_time(), 0)}__", inline=True)
+    embed.add_field(value=f"__{get_uptime()}__", inline=True)
 
     await ctx.send(embed=embed)
 
