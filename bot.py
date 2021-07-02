@@ -60,7 +60,8 @@ async def botinfo(ctx):
     embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
     embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
-    embed.add_field(name="OS INFO", value=f"__{platform.system()}__", inline=True)
+    embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()}__", inline=True)
+    embed.add_field(name="SYSTEM ARCHITECTURE", value=f"__{platform.machine()}__", inline=True)
     # embed.add_field(value=f"__{psutil.boot_time(), 0)}__", inline=True)
 
     await ctx.send(embed=embed)
