@@ -69,6 +69,7 @@ async def botinfo(ctx):
 
     embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
     embed.add_field(name="UPTIME", value=f"__{get_uptime()}__", inline=True)
+    embed.add_field(name="PING", value=f"{round(bot.latency * 1000)}ms", inline=True)
 
     await ctx.send(embed=embed)
 
