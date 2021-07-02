@@ -64,16 +64,7 @@ def get_uptime():
         t = timedelta(seconds = uptime_seconds)
         return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
-status_options = [
-    {
-        "type" : 4,
-        "data" : {
-            "content" : "You can see instance status!"
-        }
-    }
-]
-
-@slash.slash(name="status", options=status_options)
+@slash.slash(name="status", description="You can see instance status!")
 async def status(ctx):
     host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
