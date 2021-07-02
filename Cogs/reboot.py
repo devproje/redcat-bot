@@ -5,6 +5,7 @@ from discord_slash import SlashCommand, SlashContext
 
 def setup(bot):
     bot.add_cog(Reboot(bot))
+    bot.add_cog(Slash(bot))
 
 class Slash(commands.Cog):
     def __init__(self, bot):
@@ -18,10 +19,6 @@ class Slash(commands.Cog):
 
     def cog_unload(self):
         self.slash.remove()
-
-
-def setup(bot):
-    bot.add_cog(Slash(bot))
 
 class Reboot(commands.Cog):
     def __init__(self, bot):
