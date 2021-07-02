@@ -62,7 +62,7 @@ def get_uptime():
         return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
 @bot.command(name="status")
-async def botinfo(ctx):
+async def status(ctx):
     host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
     embed.add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
