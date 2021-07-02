@@ -1,5 +1,6 @@
 import discord, os, subprocess
 from discord.ext import commands
+from discord_slash import SlashContext, cog_ext
 
 def setup(bot):
     bot.add_cog(Push(bot))
@@ -9,8 +10,17 @@ class Push(commands.Cog):
         self.bot = bot
         self.author_id = 415801068174180352
 
-    @commands.command(name="push")
-    async def push_code(self, ctx):
+    options_def = [
+            {
+                "type" : 4,
+                "data" : {
+                    "content" : "successful pushed!"
+                }
+            }
+        ]
+
+    @cog_ext.cog_slash(name="push", description="You can self push code your bot", options=options_def)
+    async def push_code(self, ctx: SlashContext):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can push code!\nBecause you're not bot owner!")
             await ctx.send(embed=embed)
