@@ -28,7 +28,8 @@ class BotInfo(commands.Cog):
     @commands.command(name="botinfo")
     async def botinfo(self, ctx):
         usage_class = GetInstanceUsage()
-        embed=(discord.Embed(title="", description=f"{self.host}", color=self.embed_color)
-            .add_field(name="CPU", value=f"{usage_class.cpu_status()}", inline=True)
-            .add_field(name="Memory", value=f"{usage_class.memory_status()}", inline=True))
+        embed=(discord.Embed(title="", description=f"{self.host}", color=self.embed_color))
+        embed.add_field(name="CPU", value=f"{usage_class.cpu_status()}", inline=True)
+        embed.add_field(name="Memory", value=f"{usage_class.memory_status()}", inline=True)
+        
         await ctx.send(embed)
