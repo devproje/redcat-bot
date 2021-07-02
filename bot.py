@@ -14,7 +14,7 @@ embed_color = 0x75B8FF
 bot = commands.Bot(command_prefix="/", help_command=None)
 owner_id = 415801068174180352
 
-slash = SlashCommand(bot, override_type = True)
+slash = SlashCommand(bot, override_type = True, sync_on_cog_reload=True)
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
@@ -80,6 +80,6 @@ async def status(ctx):
     embed.add_field(name="CONTRIBUTERS", value="None", inline=True)
     embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
-    await ctx.send(embed=embed)
+    await ctx.send(content="status", embed=embed)
 
 bot.run(token)
