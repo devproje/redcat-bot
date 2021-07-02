@@ -57,7 +57,7 @@ def get_uptime():
     with open("/proc/uptime", 'r') as f:
         uptime_seconds = float(f.readline().split()[0])
         t = timedelta(seconds = uptime_seconds)
-        return (t.days, t.seconds // 3600, (t.seconds // 60) % 60)
+        return ("{}Days | {}Hours | {}Minutes".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
 @bot.command(name="status")
 async def botinfo(ctx):
