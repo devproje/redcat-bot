@@ -2,7 +2,7 @@ import discord, os, psutil
 from discord.ext import commands
 
 def setup(bot):
-    bot.add_cog(BotInfo(bot))
+    bot.add_cog(BotStatus(bot))
 """
 class GetInstanceUsage():
     def __init__(self):
@@ -20,7 +20,7 @@ class GetInstanceUsage():
         return self.memory_usage
 """
 
-class BotInfo(commands.Cog):
+class BotStatus(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.embed_color = 0x75B8FF
