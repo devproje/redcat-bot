@@ -68,7 +68,7 @@ async def botinfo(ctx):
     embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
     embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-    embed.add_field(value=f"__{get_uptime()}__", inline=True)
+    embed.add_field(name="UPTIME", value=f"__{get_uptime()}__", inline=True)
 
     await ctx.send(embed=embed)
 
