@@ -14,13 +14,10 @@ class Help(commands.Cog):
     async def help(self, ctx):
         embed = discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
         embed.add_field(name="`\\help`", value="Open help embed", inline=True)
-        embed.add_field(name="`\\ping`", value="ping with your bot", inline=True)
-        embed.add_field(name="`\\pong`", value="pong with your bot", inline=True)
         embed.add_field(name="`\\carrot`", value="Help! :carrot:", inline=True)
         embed.add_field(name="`\\wincho <action>`", value="you can broken wintchoco", inline=True)
         embed.add_field(name="`\\윈초 <action>`", value="당신은 윈초를 괴롭힐 수 있습니다", inline=True)
         embed.add_field(name="`\\version`", value="You can see this bot version", inline=True)
-        embed.add_field(name="`\\profile <None or mention or id>`", value="You can grab target person's avatar image", inline=True)
         embed.add_field(name="`\\clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
         embed.add_field(name="`\\music help`", value="You can see music command options!", inline=True)
         embed.add_field(name="`\\meme`", value="You can use Project_TL's meme image!", inline=True)

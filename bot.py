@@ -1,16 +1,19 @@
-import discord, os, asyncio, psutil, platform
-from datetime import timedelta
+import discord, os, psutil, platform
 from discord.ext import commands
+from discord_slash import SlashCommand
+from datetime import timedelta
+
+bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
+
+bot_version="v1.0.0"
+embed_color = 0x75B8FF
+
+owner_id = 415801068174180352
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
-
-bot_version="v0.9.0"
-embed_color = 0x75B8FF
-
-bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
-owner_id = 415801068174180352
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
@@ -20,7 +23,7 @@ for filename in os.listdir("Cogs"):
 async def on_ready():
     print("Logined for ProjectBot")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
-
+    
 @bot.command(name="version")
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
