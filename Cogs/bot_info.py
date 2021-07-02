@@ -3,11 +3,12 @@ from discord.ext import commands
 
 def setup(bot):
     bot.add_cog(BotInfo(bot))
-
+"""
 class GetInstanceUsage():
     def __init__(self):
         pid = os.getpid()
         py = psutil.Process(pid)
+        psutil.cpu_percent()
 
         self.cpu_usage = os.popen("ps aux | grep " + str(pid) + " | grep -v grep | awk '{print $3}'").read()
         self.memory_usage = round(py.memory_info()[0] /2.**30, 2)
@@ -17,7 +18,7 @@ class GetInstanceUsage():
 
     def memory_status(self):
         return self.memory_usage
-        
+"""
 
 class BotInfo(commands.Cog):
     def __init__(self, bot):
@@ -27,9 +28,9 @@ class BotInfo(commands.Cog):
 
     @commands.command(name="botinfo")
     async def botinfo(self, ctx):
-        usage_class = GetInstanceUsage()
+        # usage_class = GetInstanceUsage()
         embed=(discord.Embed(title="", description=f"{self.host}", color=self.embed_color))
-        embed.add_field(name="CPU", value=f"{usage_class.cpu_status()}", inline=True)
-        embed.add_field(name="Memory", value=f"{usage_class.memory_status()}", inline=True)
+        embed.add_field(name="CPU Usage", value=f"__{psutil.cpu_percent()}__%", inline=True)
+        embed.add_field(name="RAM Usage", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
 
         await ctx.send(embed=embed)
