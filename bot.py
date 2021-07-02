@@ -1,4 +1,4 @@
-import discord, os, asyncio, psutil
+import discord, os, asyncio, psutil, platform
 from discord.ext import commands
 
 token_path = "token.txt"
@@ -60,7 +60,7 @@ async def botinfo(ctx):
     embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
     embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
-    embed.add_field(name="OS INFO", value="", inline=True)
+    embed.add_field(name="OS INFO", value=f"__{platform.system()}__", inline=True)
     embed.add_field(value=f"__{round(psutil.boot_time(), 0)}__", inline=True)
 
     await ctx.send(embed=embed)
