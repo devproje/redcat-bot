@@ -1,4 +1,4 @@
-import discord, os, asyncio
+import discord, os, asyncio, psutil
 from discord.ext import commands
 
 token_path = "token.txt"
@@ -51,5 +51,18 @@ async def reload_commands(ctx, extension=None):
         embed = discord.Embed(name=":stop_sign: Error", description="You're not bot owner!", color=embed_color)
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
+
+@commands.command(name="status")
+async def botinfo(ctx):
+    host = "Hosting by ADP_Community"
+    embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
+    embed.add_field(name="CPU USAGE", value=f"__{psutil.cpu_percent()}__%", inline=True)
+    embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
+    embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
+
+    embed.add_field(name="OS INFO", value="", inline=True)
+    embed.add_field(value=f"__{psutil.boot_time()}__", inline=True)
+
+    await ctx.send(embed=embed)
 
 bot.run(token)
