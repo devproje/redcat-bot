@@ -26,10 +26,10 @@ class BotInfo(commands.Cog):
         self.embed_color = 0x75B8FF
         self.host = "Hosting by ADP_Community"
 
-    @commands.command(name="botinfo")
+    @commands.command(name="status")
     async def botinfo(self, ctx):
         # usage_class = GetInstanceUsage()
-        embed=(discord.Embed(title="", description=f"{self.host}", color=self.embed_color))
+        embed=(discord.Embed(title="ProjectBot-remake Status", description=f"{self.host}", color=self.embed_color))
         embed.add_field(name="CPU Usage", value=f"__{psutil.cpu_percent()}__%", inline=True)
         embed.add_field(name="RAM Usage", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
 
