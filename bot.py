@@ -14,7 +14,7 @@ embed_color = 0x75B8FF
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
 owner_id = 415801068174180352
 
-slash = SlashCommand(bot)
+slash = SlashCommand(bot, override_type=True, sync_commands=True, sync_on_cog_reload=True)
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
