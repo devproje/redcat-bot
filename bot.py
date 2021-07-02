@@ -5,7 +5,7 @@ token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
 token = open_token.read().split()[0]
 
-bot_version="v0.8.0"
+bot_version="v0.8.1"
 embed_color = 0x75B8FF
 
 bot = commands.Bot(command_prefix="\\", help_command=None)
