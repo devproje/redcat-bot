@@ -11,7 +11,7 @@ token = open_token.read().split()[0]
 bot_version="v0.9.0"
 embed_color = 0x75B8FF
 
-bot = commands.Bot(command_prefix="/", help_command=None, intents=discord.Intents.all())
+bot = commands.Bot(command_prefix="/", help_command=None)
 owner_id = 415801068174180352
 
 slash = SlashCommand(bot, override_type = True, sync_on_cog_reload=True)
@@ -64,7 +64,16 @@ def get_uptime():
         t = timedelta(seconds = uptime_seconds)
         return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
-@slash.slash(name="status")
+status_options = [
+    {
+        "type" : 4,
+        "data" : {
+            "content" : "You can see instance status!"
+        }
+    }
+]
+
+@slash.slash(name="status", options=status_options)
 async def status(ctx):
     host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
@@ -81,5 +90,5 @@ async def status(ctx):
     embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
     await ctx.send(content="status", embed=embed)
-
+    
 bot.run(token)
