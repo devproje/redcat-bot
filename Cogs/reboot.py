@@ -5,21 +5,7 @@ from discord_slash import SlashCommand, SlashContext
 
 def setup(bot):
     bot.add_cog(Reboot(bot))
-    bot.add_cog(Slash(bot))
-
-class Slash(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-        self.slash = SlashCommand(bot, override_type=True)
-        # Cog is only supported by commands ext, so just skip checking type.
-
-        @self.slash.slash(name="test")
-        async def _test(ctx: SlashContext):
-            await ctx.send(content="Hello, World!")
-
-    def cog_unload(self):
-        self.slash.remove()
-
+    
 class Reboot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
