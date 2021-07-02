@@ -9,6 +9,8 @@ token = open_token.read().split()[0]
 bot_version="v0.8.1"
 embed_color = 0x75B8FF
 
+owner_id=415801068174180352
+
 bot = commands.Bot(command_prefix="\\", help_command=None)
 
 for filename in os.listdir("Cogs"):
@@ -63,13 +65,15 @@ def get_uptime():
 async def botinfo(ctx):
     host = "Hosting by ADP_Community"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
-    embed.add_field(name="CPU USAGE", value=f"__{psutil.cpu_percent()}__%", inline=True)
-    embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
-    embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
+    embed.add_field(name="CPU USAGE", value=f"__{psutil.cpu_percent()}%__", inline=True)
+    embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
+    embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%__", inline=True)
 
     embed.add_field(name="UPTIME", value=f"__{get_uptime()}__", inline=True)
     embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-    embed.add_field(name="PING", value=f"{round(bot.latency * 1000)}ms", inline=True)
+    embed.add_field(name="PING", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
+
+    embed.add_field(name="OWNER", value=f"<@!{owner_id}>")
 
     await ctx.send(embed=embed)
 
