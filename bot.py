@@ -61,15 +61,15 @@ def get_uptime():
 
 @bot.command(name="status")
 async def botinfo(ctx):
-    host = "Hosting by ADP_Community"
+    host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
-    embed.add_field(name="CPU USAGE", value=f"__{psutil.cpu_percent()}%__", inline=True)
-    embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
-    embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%__", inline=True)
+    embed.add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
+    embed.add_field(name="**RAM USAGE**", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
+    embed.add_field(name="**AVAILABLE USAGE**", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%__", inline=True)
 
-    embed.add_field(name="UPTIME", value=f"__{get_uptime()}__", inline=True)
-    embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-    embed.add_field(name="PING", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
+    embed.add_field(name="**UPTIME**", value=f"__{get_uptime()}__", inline=True)
+    embed.add_field(name="**SYSTEM INFO**", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
+    embed.add_field(name="**PING**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
 
     embed.add_field(name="OWNER", value=f"Project_TL#9436", inline=True)
     embed.add_field(name="CONTRIBUTERS", value="None", inline=True)
