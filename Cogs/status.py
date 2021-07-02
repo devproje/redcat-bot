@@ -32,6 +32,6 @@ class BotStatus(commands.Cog):
         embed=(discord.Embed(title="ProjectBot-remake Status", description=f"{self.host}", color=self.embed_color))
         embed.add_field(name="CPU Usage", value=f"__{psutil.cpu_percent()}__%", inline=True)
         embed.add_field(name="RAM Usage", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
-        embed.add_field(name="Available Usage", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 2)}__%", inline=True)
+        embed.add_field(name="Available Usage", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
         await ctx.send(embed=embed)
