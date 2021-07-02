@@ -52,7 +52,7 @@ async def reload_commands(ctx, extension=None):
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)
 
-@commands.command(name="status")
+@bot.command(name="status")
 async def botinfo(ctx):
     host = "Hosting by ADP_Community"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
