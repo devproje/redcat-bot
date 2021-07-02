@@ -11,7 +11,7 @@ token = open_token.read().split()[0]
 bot_version="v0.9.0"
 embed_color = 0x75B8FF
 
-bot = commands.Bot(command_prefix="/", help_command=None)
+bot = commands.Bot(command_prefix="/", help_command=None, intents=discord.Intents.all())
 owner_id = 415801068174180352
 
 slash = SlashCommand(bot, override_type = True, sync_on_cog_reload=True)
