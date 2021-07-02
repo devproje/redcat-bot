@@ -19,7 +19,7 @@ class Update(commands.Cog):
         else:
             cmd = ["git", "pull", "origin", "master"]
             fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
-            data = fd_popen.read().strip()
+            data = fd_popen.read()
             fd_popen.close()
 
             embed = (discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
