@@ -1,5 +1,6 @@
 import discord, os, subprocess
 from discord.ext import commands
+from discord_slash import SlashContext, cog_ext
 
 def setup(bot):
     bot.add_cog(Update(bot))
@@ -10,8 +11,8 @@ class Update(commands.Cog):
         self.embed_color = 0x00FF00
         self.author_id = 415801068174180352
 
-    @commands.command(name="update")
-    async def update_code(self, ctx):
+    @cog_ext.cog_slash(name="update")
+    async def update_code(self, ctx: SlashContext):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)

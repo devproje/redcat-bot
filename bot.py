@@ -23,7 +23,8 @@ for filename in os.listdir("Cogs"):
 async def on_ready():
     print("Logined for ProjectBot")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
-    
+
+"""
 @bot.command(name="version")
 async def version(ctx):
     embed = discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
@@ -80,5 +81,6 @@ async def status(ctx):
     embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
     await ctx.send(embed=embed)
+"""
 
 bot.run(token)
