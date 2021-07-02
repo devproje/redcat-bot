@@ -57,7 +57,7 @@ def get_uptime():
     with open("/proc/uptime", 'r') as f:
         uptime_seconds = float(f.readline().split()[0])
         t = timedelta(seconds = uptime_seconds)
-        return ("{} Days | {} Hours | {} Minutes".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
+        return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
 @bot.command(name="status")
 async def botinfo(ctx):
@@ -67,8 +67,8 @@ async def botinfo(ctx):
     embed.add_field(name="RAM USAGE", value=f"__{psutil.virtual_memory().percent}__%", inline=True)
     embed.add_field(name="AVAILABLE USAGE", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}__%", inline=True)
 
-    embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
     embed.add_field(name="UPTIME", value=f"__{get_uptime()}__", inline=True)
+    embed.add_field(name="SYSTEM INFO", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
     embed.add_field(name="PING", value=f"{round(bot.latency * 1000)}ms", inline=True)
 
     await ctx.send(embed=embed)
