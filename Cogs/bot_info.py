@@ -25,9 +25,10 @@ class BotInfo(commands.Cog):
         self.embed_color = 0x75B8FF
         self.host = "Hosting by ADP_Community"
 
-    def botinfo(self, ctx):
+    @commands.command(name="botinfo")
+    async def botinfo(self, ctx):
         usage_class = GetInstanceUsage()
         embed=(discord.Embed(title="", description=f"{self.host}", color=self.embed_color)
             .add_field(name="CPU", value=f"{usage_class.cpu_status()}", inline=True)
             .add_field(name="Memory", value=f"{usage_class.memory_status()}", inline=True))
-        ctx.send(embed)
+        await ctx.send(embed)
