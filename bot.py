@@ -1,4 +1,5 @@
 import discord, os, asyncio, psutil, platform
+from discord_slash.utils.manage_commands import create_option
 from datetime import timedelta
 from discord.ext import commands
 
@@ -9,7 +10,8 @@ token = open_token.read().split()[0]
 bot_version="v0.9.0"
 embed_color = 0x75B8FF
 
-bot = commands.Bot(command_prefix="\\", help_command=None)
+bot = commands.Bot(command_prefix="/", help_command=None)
+owner_id = 415801068174180352
 
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
@@ -32,7 +34,7 @@ async def version(ctx):
 
 @bot.command(name="reload")
 async def reload_commands(ctx, extension=None):
-    if ctx.author.id == 415801068174180352:
+    if ctx.author.id == owner_id:
         if extension is None:
             for filename in os.listdir("Cogs"):
                 if filename.endswith(".py"):
@@ -59,7 +61,7 @@ def get_uptime():
         t = timedelta(seconds = uptime_seconds)
         return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
-@bot.command(name="status")
+@slash.command(name="status")
 async def botinfo(ctx):
     host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
