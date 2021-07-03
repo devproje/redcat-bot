@@ -28,7 +28,7 @@ class ChatCleaner(commands.Cog):
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="clear")
+    @commands.command(name="clear")
     async def chat_cleaner(self, ctx, amount: int = None):
         if ctx.author.id == self.owner_id or ctx.author.guild_permissions.administrator:
             if amount < 301 and amount > 0:
