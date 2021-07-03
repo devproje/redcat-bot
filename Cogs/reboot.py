@@ -25,7 +25,7 @@ class Reboot(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="reboot")
+    @cog_ext.cog_slash(name="reboot", description="Reboot command")
     async def reboot(self, ctx: SlashContext):
         if ctx.author.id == self.author_id:
             embed = discord.Embed(title=":repeat: Reboot", description="**Please wait just more secends!**\nDiscord bot rebooting...", color=0xFF0000)
