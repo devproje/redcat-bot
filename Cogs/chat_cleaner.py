@@ -27,3 +27,20 @@ class ChatCleaner(commands.Cog):
                 embed = discord.Embed(title=f":no_entry: **Error!**", description=f"**REASON:** You're not manager or owner!", color=self.embed_color)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
+
+    @cog_ext.cog_slash(name="clear")
+    async def chat_cleaner(self, ctx, amount: int = None):
+        if ctx.author.id == self.owner_id or ctx.author.guild_permissions.administrator:
+            if amount < 301 and amount > 0:
+                embed = discord.Embed(title=":white_check_mark: **Chat Removed**", description=f"{amount} chats is removed!", color=self.embed_color)
+                await ctx.channel.purge(limit=amount + 1)
+                embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+                await ctx.send(embed=embed)
+            elif amount > 300:
+                embed = discord.Embed(title=":no_entry: **Error!**", description=f"**REASON:** {amount} chats is too much!", color=self.embed_color)
+                embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(title=f":no_entry: **Error!**", description=f"**REASON:** You're not manager or owner!", color=self.embed_color)
+                embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+                await ctx.send(embed=embed)
