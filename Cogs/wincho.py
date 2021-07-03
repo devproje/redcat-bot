@@ -70,7 +70,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: Wincho help", description="`\\wincho` `<burn | smash | melt | call | 프젝기술>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: Wincho help", description="`/wincho` `<burn | smash | melt | call | 프젝기술>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
@@ -107,7 +107,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif wincho_action is None:
-            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`\\윈초` `<녹이기 | 부수기 | 녹이기 | 부르기 | 프젝기술>`", color=self.embed_color)
+            embed = discord.Embed(title=":question: 윈초 커맨드 도움말", description="`/윈초` `<녹이기 | 부수기 | 녹이기 | 부르기 | 프젝기술>`", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
