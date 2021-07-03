@@ -16,7 +16,7 @@ class ChatCleaner(commands.Cog):
         if ctx.author.id == self.owner_id or ctx.author.guild_permissions.administrator:
             if amount < 301 and amount > 0:
                 embed = discord.Embed(title=":white_check_mark: **Chat Removed**", description=f"{amount} chats is removed!", color=self.embed_color)
-                await ctx.channel.purge(limit=amount + 2)
+                await ctx.channel.purge(limit=amount)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             elif amount > 300:
