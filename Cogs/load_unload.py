@@ -12,7 +12,7 @@ class LoadUnload(commands.Cog):
         self.bot = bot
         self.author_id = 415801068174180352
 
-    @cog_ext.cog_slash(name="load")
+    @cog_ext.cog_slash(name="load", description="You can load command")
     async def load(self, ctx: SlashContext, extension):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't loaded **{extension}**!\nBecause you're not bot owner!")
@@ -24,7 +24,7 @@ class LoadUnload(commands.Cog):
             await ctx.send(embed=embed)
 
 
-    @cog_ext.cog_slash(name="unload")
+    @cog_ext.cog_slash(name="unload", description="You can unload command")
     async def unload(self, ctx: SlashContext, extension):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't unloaded **{extension}**!\nBecause you're not bot owner!")
