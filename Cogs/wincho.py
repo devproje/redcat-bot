@@ -27,9 +27,9 @@ def get_image(image_type):
     elif image_type == 1:
         return "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg"
     elif image_type == 2:
-        return "http://netherald.kro.kr:8080/apps/files_sharing/publicpreview/DSmMZADoMxB2kGM?x=1457&y=383&a=true&file=Burnt_Wintchoco.jpg&scalingup=0"
+        return "https://drive.google.com/file/d/1I9hQZkD63b_BPqNDc4pyXqITxoavsC6u/view?usp=sharing"
     elif image_type == 3:
-        return "http://projecttl.net:8080/apps/files_sharing/publicpreview/2JBi9iQxEg3SMSM?x=1348&y=315&a=true&file=%25EC%259C%2588%25EC%25B4%2588%25EB%25A5%25BC%2520%25EB%2585%25B9%25EC%259D%25B4%25EB%258A%2594%2520%25ED%2594%2584%25EC%25A0%259D%25EC%259D%2598%2520%25EB%259D%25BC%25EC%259D%25B4%25ED%2584%25B0.png&scalingup=0"
+        return "https://drive.google.com/file/d/1itCvlC6QHBFHukYe8iQpPJYq0blBaT4W/view?usp=sharing"
     else:
         return None
 
