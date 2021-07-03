@@ -1,5 +1,6 @@
 import discord, os, subprocess
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 def setup(bot):
     bot.add_cog(Update(bot))
@@ -12,6 +13,25 @@ class Update(commands.Cog):
 
     @commands.command(name="update")
     async def update_code(self, ctx):
+        if ctx.author.id != self.author_id:
+            embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.channel.send(embed=embed)
+        else:
+            cmd = ["git", "pull", "origin", "master"]
+            fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
+            data = fd_popen.read().strip()
+            data_conv = data.decode('utf-8')
+            fd_popen.close()
+
+            embed = (discord.Embed(name=":white_check_mark: Update Complete", description="Owner's code has successful updated!", color=self.embed_color)
+                .add_field(name="Git Status", value=f"```sh\n{data_conv}\n```", inline=False))
+        
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.channel.send(embed=embed)
+    
+    @cog_ext.slash_cog(name="update")
+    async def update_code(self, ctx: SlashContext):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
