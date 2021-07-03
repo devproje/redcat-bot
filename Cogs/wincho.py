@@ -1,5 +1,6 @@
 import discord, random
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 def setup(bot):
     bot.add_cog(WinCho(bot))
@@ -27,9 +28,9 @@ def get_image(image_type):
     elif image_type == 1:
         return "https://d2culxnxbccemt.cloudfront.net/craft/content/uploads/2020/07/30221830/image-001.jpg"
     elif image_type == 2:
-        return "https://drive.google.com/file/d/1I9hQZkD63b_BPqNDc4pyXqITxoavsC6u/view?usp=sharing"
+        return "https://cdn.discordapp.com/attachments/860725885703421954/860748788998209536/Burnt_Wintchoco.jpg"
     elif image_type == 3:
-        return "https://drive.google.com/file/d/1itCvlC6QHBFHukYe8iQpPJYq0blBaT4W/view?usp=sharing"
+        return "https://cdn.discordapp.com/attachments/860725885703421954/860748787142885376/11c8299c3b69583f.png"
     else:
         return None
 
@@ -40,8 +41,8 @@ class WinCho(commands.Cog):
 
         self.author_id = 415801068174180352
 
-    @commands.command(name="wincho")
-    async def wincho(self, ctx, wincho_action=None):
+    @cog_ext.cog_slash(name="wincho", description="You can broken wintchoco")
+    async def wincho(self, ctx: SlashContext, wincho_action=None):
         if wincho_action == "smash":
             embed = discord.Embed(description="**Smashing Wincho!**", color=self.embed_color)
             embed.set_image(url=get_image(1))
@@ -77,7 +78,7 @@ class WinCho(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
-    @commands.command(name="윈초")
+    @cog_ext.cog_slash(name="윈초", description="당신은 윈초를 괴롭힐 수 있습니다")
     async def wincho_korean(self, ctx, wincho_action=None):
         if wincho_action == "부수기":
             embed = discord.Embed(description="**윈초 부수기!**", color=self.embed_color)
