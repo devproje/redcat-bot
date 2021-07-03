@@ -28,6 +28,11 @@ class ChatCleaner(commands.Cog):
                 embed = discord.Embed(title=":no_entry: **Error!**", description=f"**REASON:** {amount} chats is too much!", color=self.embed_color)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
+            elif amount == None:
+                embed = discord.Embed(title=":white_check_mark: **Chat Removed**", description=f"{amount} chat is removed!", color=self.embed_color)
+                await ctx.channel.purge(limit=3)
+                embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+                await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title=f":no_entry: **Error!**", description=f"**REASON:** You're not manager or owner!", color=self.embed_color)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
