@@ -30,7 +30,7 @@ class Update(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.channel.send(embed=embed)
     
-    @cog_ext.slash_cog(name="update")
+    @cog_ext.cog_slash(name="update")
     async def update_code(self, ctx: SlashContext):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
