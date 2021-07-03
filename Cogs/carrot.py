@@ -9,11 +9,11 @@ class Carrot(commands.Cog):
         self.bot = bot
 
     @commands.command(name="carrot")
-    async def carrot(self, ctx):
+    async def carrot(self, ctx: commands.Context):
         await ctx.message.add_reaction("✅")
         await ctx.send(":carrot:")
 
-    @cog_ext.cog_slash(name="carrot")
+    @cog_ext.cog_slash(name="carrot", description="Somebody Help!")
     async def carrot(self, ctx: SlashContext):
         await ctx.message.add_reaction("✅")
         await ctx.send(":carrot:")
