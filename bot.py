@@ -34,29 +34,6 @@ async def version(ctx):
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
     await ctx.channel.send(embed=embed)
 
-@bot.command(name="reload")
-async def reload_commands(ctx, extension=None):
-    if ctx.author.id == owner_id:
-        if extension is None:
-            for filename in os.listdir("Cogs"):
-                if filename.endswith(".py"):
-                    bot.unload_extension(f"Cogs.{filename[:-3]}")
-                    bot.load_extension(f"Cogs.{filename[:-3]}")
-
-            embed = discord.Embed(name=":white_check_mark: Done!", description="All command is reloaded!", color=embed_color)
-            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-            await ctx.channel.send(embed=embed)
-        else:
-            bot.unload_extension(f"Cogs.{extension}")
-            bot.load_extension(f"Cogs.{extension}")
-            embed = discord.Embed(name=":white_check_mark: Done!", description=f"{extension} is reloaded!", color=embed_color)
-            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-            await ctx.channel.send(embed=embed)
-    else:
-        embed = discord.Embed(name=":stop_sign: Error", description="You're not bot owner!", color=embed_color)
-        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-        await ctx.channel.send(embed=embed)
-
 def get_uptime():
     with open("/proc/uptime", 'r') as f:
         uptime_seconds = float(f.readline().split()[0])
