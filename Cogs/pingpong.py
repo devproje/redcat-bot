@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import cog
 from discord_slash import SlashContext, cog_ext
 
 def setup(bot):
@@ -12,14 +11,14 @@ class PingPong(commands.Cog):
         self.embed_color = 0x75B8FF
 
     @cog_ext.cog_slash(name="ping", description="You can ping pong with bot")
-    async def ping(self, ctx):
+    async def ping(self, ctx: SlashContext):
         embed = discord.Embed(title=":ping_pong: Pong!", description=f"{round(self.bot.latency * 1000)}ms", color=self.embed_color)
         embed.set_footer(text=f"{ctx.author.name}{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="pong", description="You can ping pong with bot")
-    async def pong(self, ctx):
+    async def pong(self, ctx: SlashContext):
         embed=discord.Embed(title=":ping_pong: Ping!", description=f"{round(self.bot.latency * 1000)}ms", color=self.embed_color)
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
