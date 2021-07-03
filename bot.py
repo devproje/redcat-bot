@@ -1,10 +1,10 @@
 import discord, os, psutil, platform
 from discord.ext import commands
-# from discord_slash import SlashCommand
+from discord_slash import SlashCommand
 from datetime import timedelta
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
-# slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
 bot_version="v1.0.0"
 embed_color = 0x75B8FF
