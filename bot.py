@@ -1,10 +1,10 @@
 import discord, os, psutil, platform
 from discord.ext import commands
-from discord_slash import SlashCommand
+# from discord_slash import SlashCommand
 from datetime import timedelta
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
-slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
+# slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
 bot_version="v1.0.0"
 embed_color = 0x75B8FF
@@ -24,15 +24,14 @@ async def on_ready():
     print("Logined for ProjectBot")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
 
-"""
 @bot.command(name="version")
 async def version(ctx):
-    embed = discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
-    embed.add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
-    embed.add_field(name=f"**Author**", value="Project_TL#9436", inline=True)
-    embed.add_field(name=f"**Contributers**", value="None", inline=True)
+    embed = (discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
+        .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
+        .add_field(name=f"**Author**", value="Project_TL#9436", inline=True)
+        .add_field(name=f"**Contributers**", value="None", inline=True)
     
-    embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
     await ctx.channel.send(embed=embed)
 
 @bot.command(name="reload")
@@ -81,6 +80,5 @@ async def status(ctx):
     embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
     await ctx.send(embed=embed)
-"""
 
 bot.run(token)
