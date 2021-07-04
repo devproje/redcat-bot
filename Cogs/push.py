@@ -19,8 +19,9 @@ class Push(commands.Cog):
             cmd = ["git", "push", "origin", "master"]
             fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
             data = fd_popen.read().strip()
+            data_decode=data.decode("utf-8")
             fd_popen.close()
             
-            embed = (discord.Embed(title=f":white_check_mark: **Done!**", description=f"Instance code is pushed!\n```sh\n{data}\n```")
+            embed = (discord.Embed(title=f":white_check_mark: **Done!**", description=f"Instance code is pushed!\n```sh\n{data_decode}\n```")
                 .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
             await ctx.send(embed=embed)
