@@ -3,9 +3,12 @@ from discord.ext import commands
 from inspect import getsource
 import discord, sys, os
 
-class EvalCommand:
-    def __init__(self):
-        pass
+def setup(bot):
+    bot.add_cog(Eval(bot))
+
+class Eval:
+    def __init__(self, bot):
+        self.bot = bot
     
     def resolve_variable(self, variable):
         if hasattr(variable, "__iter__"):
@@ -53,6 +56,3 @@ class EvalCommand:
             await ctx.send(f"Error occurred:```\n{type(e).__name__}: {str(e)}```")
         
         del args, code, silent
-        
-def setup(bot):
-    bot.add_cog(EvalCommand())
