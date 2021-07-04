@@ -26,10 +26,10 @@ class Help(commands.Cog):
                 .add_field(name="`\\remove <array_number>`", value="Remove queued target music", inline=True)
                 .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
             await ctx.send(embed=embed)
-            
+
         elif argument == None:
             embed = (discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
-                .add_field(name="**Slash Command**", value="Slash command help\nThis feature is beta!", inline=False)
+                .add_field(name="**Slash Command**", value="Slash command help\n**This feature is beta!**", inline=False)
                 .add_field(name="`/ping`", value="You can ping pong with bot", inline=True)
                 .add_field(name="`/pong`", value="You can ping pong with bot", inline=True)
                 .add_field(name="`/carrot`", value="Help! :carrot:", inline=True)
