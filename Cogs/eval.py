@@ -18,7 +18,7 @@ class Eval(commands.Cog):
         else:
             code_file = open("code_space.py", mode="w", encoding="utf-8")
             code_file.write(code)
-            code_file.close())
+            code_file.close()
 
             file = open("code_space.py", mode="r", encoding="utf-8")
 
