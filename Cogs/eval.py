@@ -6,7 +6,7 @@ import discord, sys, os
 def setup(bot):
     bot.add_cog(Eval(bot))
 
-class Eval:
+class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
