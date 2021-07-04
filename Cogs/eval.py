@@ -12,8 +12,8 @@ class Eval(commands.Cog):
         self.bot = bot
 
     @cog_ext.cog_slash(name="eval", description="Eval code")
-    async def eval(self, ctx: SlashContext, *, type, code):
+    async def eval(self, ctx: SlashContext, *, type, code: str):
         if type == "py":
             result = await aexec(code)
-            embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"```py\n{result}\n```")
+            embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"**Code**:\n```py\n{code}\n```\n**Result**:\n```sh\n{result}\n```")
             await ctx.send(embed=embed)
