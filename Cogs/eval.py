@@ -16,6 +16,6 @@ class Eval(commands.Cog):
         code=f"""
         {code}
         """
-        result=await aexec(code)
+        result=aexec(code)
         embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"```py\n{result}\n```")
         await ctx.send(embed=embed)
