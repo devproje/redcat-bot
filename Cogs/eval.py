@@ -13,11 +13,14 @@ class Eval(commands.Cog):
     
     @commands.command(name="eval", pass_context=True)
     async def eval(self, ctx, *, code: str):
-        file = open("code_space.py", mode="wt", encoding="utf-8")
-        file.write(code)
-        file.close()
+        code_file = open("code_space.py", mode="w", encoding="utf-8")
+        code_file.write(code)
+        code_file.close()
+
+        file = open("code_space.py", mode="r", encoding="utf-8")
 
         source=file.read()
+        file.close()
         
         cmd = ["python3.9", "code_space.py"]
         fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
