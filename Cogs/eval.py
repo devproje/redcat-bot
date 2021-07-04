@@ -15,6 +15,8 @@ class Eval(commands.Cog):
     @commands.command(name="eval", pass_context=True)
     async def eval(self, ctx, *, code: str):
         if ctx.author.id != self.author_id:
+            return None
+        else:
             code_file = open("code_space.py", mode="w", encoding="utf-8")
             (code_file.write(code)
                 .close())
