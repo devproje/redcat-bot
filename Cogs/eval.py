@@ -13,9 +13,6 @@ class Eval(commands.Cog):
     
     @commands.command(name="eval", pass_context=True)
     async def eval(self, ctx, *, code: str):
-        code=f"""
-        {code}
-        """
         result=aexec(code)
         embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"```py\n{result}\n```")
         await ctx.send(embed=embed)
