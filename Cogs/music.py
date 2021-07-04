@@ -276,29 +276,6 @@ class Music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
 
-    @commands.command(name="music")
-    async def help(self, ctx, argument=None):
-        if argument == "help":
-            embed = (discord.Embed(title="**Music Help**", description="This is music options!", color=self.embed_color)
-                .add_field(name="`\\play <url or name>`", value="Play music", inline=True)
-                .add_field(name="`\\pause`", value="Pause music", inline=True)
-                .add_field(name="`\\resume`", value="Resume music", inline=True)
-                .add_field(name="`\\now`", value="Checking playing music", inline=True)
-                .add_field(name="`\\queue`", value="Checking play list", inline=True)
-                .add_field(name="`\\stop`", value="Stop all music", inline=True)
-                .add_field(name="`\\skip`", value="Skip current music", inline=True)
-                .add_field(name="`\\shuffle`", value="Shuffle current queue", inline=True)
-                .add_field(name="`\\loop`", value="Loop current music", inline=True)
-                .add_field(name="`\\remove <array_number>`", value="Remove queued target music", inline=True)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            await ctx.send(embed=embed)
-
-        elif argument == None:
-            return None
-
-        else:
-            return None
-
     @commands.command(name='join', invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
         destination = ctx.author.voice.channel

@@ -1,6 +1,6 @@
 import discord, os, psutil, platform
 from discord.ext import commands
-from discord_slash import SlashCommand
+from discord_slash import SlashCommand, SlashContext
 from datetime import timedelta
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
@@ -24,8 +24,8 @@ async def on_ready():
     print("Logined for ProjectBot")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
 
-@bot.command(name="version")
-async def version(ctx):
+@slash.slash(name="version")
+async def version(ctx: SlashContext):
     embed = (discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
         .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
         .add_field(name=f"**Author**", value="Project_TL#9436", inline=True)
@@ -40,8 +40,8 @@ def get_uptime():
         t = timedelta(seconds = uptime_seconds)
         return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
 
-@bot.command(name="status")
-async def status(ctx):
+@slash.slash(name="status")
+async def status(ctx: SlashContext):
     host = "Hosting by **ADP_Community**"
     embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color))
     embed.add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
