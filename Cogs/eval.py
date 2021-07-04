@@ -15,5 +15,5 @@ class Eval(commands.Cog):
     async def eval(self, ctx: SlashContext, *, type, code):
         if type == "py":
             result = await aexec(code)
-            decode=result.decode("utf-8")
-            embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"```py\n{decode}\n```")
+            embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"```py\n{result}\n```")
+            await ctx.send(embed=embed)
