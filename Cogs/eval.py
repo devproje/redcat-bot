@@ -10,7 +10,7 @@ class Eval(commands.Cog):
         self.bot = bot
 
     @commands.command(name="eval")
-    async def eval(self, ctx, *, type, code: str):
+    async def eval(self, ctx, *, type, code):
         if type == "py":
             result = await aexec(code)
             embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"**Code**:\n```py\n{code}\n```\n**Result**:\n```sh\n{result}\n```")
