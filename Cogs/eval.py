@@ -17,8 +17,8 @@ class Eval(commands.Cog):
         file.write(code)
         file.close()
 
-        source=file.read().strip()
-
+        source=file.read()
+        
         cmd = ["python3.9", "code_space.py"]
         fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
         data = fd_popen.read().strip()
@@ -26,5 +26,3 @@ class Eval(commands.Cog):
         fd_popen.close()
         embed=discord.Embed(title=":white_check_mark: **Python Eval Results**", description=f"**Source**:\n```py\n{source}\n```\n**Result**:\n```sh\n{data_decode}\n```")
         await ctx.send(embed=embed)
-
-        os.system("rm code_space.py")
