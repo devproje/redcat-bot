@@ -16,7 +16,7 @@ class Push(commands.Cog):
             embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can push code!\nBecause you're not bot owner!")
             await ctx.send(embed=embed)
         else:
-            cmd = ["git", "push", "origin", "master"]
+            cmd = ["sh", "update", "push"]
             fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
             data = fd_popen.read().strip()
             data_decode=data.decode("utf-8")

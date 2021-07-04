@@ -53,7 +53,7 @@ async def status(ctx: SlashContext):
 
         .add_field(name="**UPTIME**", value=f"__{get_uptime()}__", inline=True)
         .add_field(name="**SYSTEM INFO**", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-        .add_field(name="**PING**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
+        .add_field(name="**LATENCY**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
 
         .add_field(name="OWNER", value=author_name, inline=True)
         .add_field(name="CONTRIBUTERS", value=contributers, inline=True)
