@@ -9,6 +9,9 @@ slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 bot_version="v1.0.0"
 embed_color = 0x75B8FF
 
+author_name="Project_TL#9436"
+contributers=["None"]
+
 owner_id = 415801068174180352
 
 token_path = "token.txt"
@@ -28,8 +31,8 @@ async def on_ready():
 async def version(ctx: SlashContext):
     embed = (discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
         .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
-        .add_field(name=f"**Author**", value="Project_TL#9436", inline=True)
-        .add_field(name=f"**Contributers**", value="None", inline=True)
+        .add_field(name=f"**Author**", value=author_name, inline=True)
+        .add_field(name=f"**Contributers**", value=contributers, inline=True)
     
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
     await ctx.channel.send(embed=embed)
@@ -52,8 +55,8 @@ async def status(ctx: SlashContext):
     embed.add_field(name="**SYSTEM INFO**", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
     embed.add_field(name="**PING**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
 
-    embed.add_field(name="OWNER", value=f"Project_TL#9436", inline=True)
-    embed.add_field(name="CONTRIBUTERS", value="None", inline=True)
+    embed.add_field(name="OWNER", value=author_name, inline=True)
+    embed.add_field(name="CONTRIBUTERS", value=contributers, inline=True)
     embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
     await ctx.send(embed=embed)
