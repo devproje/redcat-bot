@@ -10,7 +10,6 @@ def setup(bot):
 class Eval(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.author_id = 415801068174180352
     
     @commands.command(name="eval", pass_context=True)
     async def eval(self, ctx, *, code: str):
@@ -18,8 +17,8 @@ class Eval(commands.Cog):
             return None
         else:
             code_file = open("code_space.py", mode="w", encoding="utf-8")
-            (code_file.write(code)
-                .close())
+            code_file.write(code)
+            code_file.close())
 
             file = open("code_space.py", mode="r", encoding="utf-8")
 
