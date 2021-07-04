@@ -17,7 +17,7 @@ class Eval(commands.Cog):
         file.write(code)
         file.close()
 
-        source=file.read().strip
+        source=file.read().strip()
 
         cmd = ["python3.9", "code_space.py"]
         fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
