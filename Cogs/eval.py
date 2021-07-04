@@ -12,4 +12,4 @@ class Eval(commands.Cog):
     @cog_ext.cog_slash(name="eval", description="Eval code")
     async def eval(self, ctx: SlashContext, *, type, code):
         if type == "py":
-            await ctx.send(aexec(code))
+            await aexec(code)
