@@ -1,6 +1,5 @@
 import asyncio, functools, itertools, math, random, discord, youtube_dl
 from os import name
-from discord.ext.commands import cog
 from async_timeout import timeout
 from discord.ext import commands
 from discord_slash import cog_ext
