@@ -1,5 +1,4 @@
 import asyncio, functools, itertools, math, random, discord, youtube_dl
-from os import name
 from async_timeout import timeout
 from discord.ext import commands
 from discord_slash import cog_ext
@@ -300,7 +299,8 @@ class Music(commands.Cog):
 
         ctx.voice_state.voice = await destination.connect()
 
-    @cog_ext.cog_slash(name="leave", description="Leave to bot")
+    @commands.command(name='leave', aliases=['disconnect'])
+    @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         if not ctx.voice_state.voice:
             return await ctx.send('Not connected to any voice channel.')
@@ -308,7 +308,7 @@ class Music(commands.Cog):
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
 
-    @cog_ext.cog_slash(name="now", description="Show now playing song")
+    @commands.command(name='now', aliases=['current', 'playing'])
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
 
@@ -341,7 +341,7 @@ class Music(commands.Cog):
             ctx.voice_state.voice.stop()
             await ctx.message.add_reaction('⏹')
 
-    @cog_ext.cog_slash(name="skip", description="Skip music")
+    @commands.command(name='skip')
     async def _skip(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Not playing any music right now...')
@@ -349,7 +349,7 @@ class Music(commands.Cog):
         await ctx.message.add_reaction('⏭')
         ctx.voice_state.skip()
 
-    @cog_ext.cog_slash(name="queue", description="Showing queue")
+    @commands.command(name='queue', aliases=["q"])
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
         if len(ctx.voice_state.songs) == 0:
             embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
@@ -371,7 +371,7 @@ class Music(commands.Cog):
             .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="shuffle", description="Shuffle music queue")
+    @commands.command(name='shuffle')
     async def _shuffle(self, ctx: commands.Context):
         if len(ctx.voice_state.songs) == 0:
             embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
@@ -391,7 +391,7 @@ class Music(commands.Cog):
         ctx.voice_state.songs.remove(index - 1)
         await ctx.message.add_reaction('✅')
 
-    @cog_ext.cog_slash(name="loop", description="Loop queue")
+    @commands.command(name='loop')
     async def _loop(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
