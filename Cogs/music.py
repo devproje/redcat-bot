@@ -1,6 +1,9 @@
 import asyncio, functools, itertools, math, random, discord, youtube_dl
+from os import name
+from discord.ext.commands import cog
 from async_timeout import timeout
 from discord.ext import commands
+from discord_slash import cog_ext
 
 def setup(bot):
     bot.add_cog(Music(bot))
@@ -298,8 +301,7 @@ class Music(commands.Cog):
 
         ctx.voice_state.voice = await destination.connect()
 
-    @commands.command(name='leave', aliases=['disconnect'])
-    @commands.has_permissions(manage_guild=True)
+    @cog_ext.cog_slash(name="leave", description="Leave to bot")
     async def _leave(self, ctx: commands.Context):
         if not ctx.voice_state.voice:
             return await ctx.send('Not connected to any voice channel.')
@@ -307,7 +309,7 @@ class Music(commands.Cog):
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
 
-    @commands.command(name='now', aliases=['current', 'playing'])
+    @cog_ext.cog_slash(name="now", description="Show now playing song")
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
 
@@ -340,7 +342,7 @@ class Music(commands.Cog):
             ctx.voice_state.voice.stop()
             await ctx.message.add_reaction('⏹')
 
-    @commands.command(name='skip')
+    @cog_ext.cog_slash(name="skip", description="Skip music")
     async def _skip(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Not playing any music right now...')
@@ -348,7 +350,7 @@ class Music(commands.Cog):
         await ctx.message.add_reaction('⏭')
         ctx.voice_state.skip()
 
-    @commands.command(name='queue', aliases=["q"])
+    @cog_ext.cog_slash(name="queue", description="Showing queue")
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
         if len(ctx.voice_state.songs) == 0:
             embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
@@ -370,7 +372,7 @@ class Music(commands.Cog):
             .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
         await ctx.send(embed=embed)
 
-    @commands.command(name='shuffle')
+    @cog_ext.cog_slash(name="shuffle", description="Shuffle music queue")
     async def _shuffle(self, ctx: commands.Context):
         if len(ctx.voice_state.songs) == 0:
             embed=(discord.Embed(title=":no_entry: **Error!**", description="Empty queue.", color=self.embed_color)
@@ -390,7 +392,7 @@ class Music(commands.Cog):
         ctx.voice_state.songs.remove(index - 1)
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='loop')
+    @cog_ext.cog_slash(name="loop", description="Loop queue")
     async def _loop(self, ctx: commands.Context):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
@@ -398,7 +400,7 @@ class Music(commands.Cog):
         ctx.voice_state.loop = not ctx.voice_state.loop
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='play', aliases=["p"])
+    @cog_ext.cog_slash(name="play", description="Play music")
     async def _play(self, ctx, *, search: str):
         if not ctx.voice_state.voice:
             await ctx.invoke(self._join)
