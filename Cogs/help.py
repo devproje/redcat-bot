@@ -23,7 +23,7 @@ class Help(commands.Cog):
                 .add_field(name="`/carrot`", value="Help! :carrot:", inline=True)
                 .add_field(name="`/wincho <action>`", value="you can broken wintchoco", inline=True)
                 .add_field(name="`/윈초 <action>`", value="당신은 윈초를 괴롭힐 수 있습니다", inline=True)
-                .add_field(name="`/profile <mention>`", value="You can grab target person's avatar image", inline=True)
+                .add_field(name="`/avatar <mention>`", value="You can grab target person's avatar image", inline=True)
                 .add_field(name="`/version`", value="You can see this bot version", inline=True)
                 .add_field(name="`/clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
                 .add_field(name="`/status`", value="You can see instance status!", inline=True)
