@@ -1,4 +1,4 @@
-import discord, os, psutil, platform, asyncio
+import discord, os, psutil, platform, asyncio, platform
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from datetime import timedelta, datetime
@@ -49,7 +49,7 @@ host = f"Hosting by **{host_name}**"
 @slash.slash(name="botinfo", description="You can show bot info.")
 async def version(ctx: SlashContext):
     await ctx.defer()
-    
+
     embed = (discord.Embed(title=f":dart: **{bot_name}** info", description=f"{host}", color=embed_color)
         .add_field(name="**Name**", value=f"{bot_name}")
         .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
@@ -77,9 +77,11 @@ async def status(ctx: SlashContext):
         .add_field(name="**UPTIME**", value=f"__{get_uptime()}__", inline=True)
         .add_field(name="**SYSTEM INFO**", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
         .add_field(name="**LATENCY**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
+        
+        .add_field(name="**PYTHON VER**", value=f"{platform.python_version()}")
+        .add_field(name="**OWNER**", value=author_name, inline=True)
+        .add_field(name="**CONTRIBUTERS**", value=contributers, inline=True)
 
-        .add_field(name="OWNER", value=author_name, inline=True)
-        .add_field(name="CONTRIBUTERS", value=contributers, inline=True)
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
     await ctx.send(embed=embed)
