@@ -15,8 +15,8 @@ class OwnerSetting(commands.Cog):
     @cog_ext.cog_slash(name="set_avatar", description="Owner's Settings!")
     async def settings(self, ctx, *, type):
         if ctx.author.id == self.owner_id:
-            if type == "daylight":
-                embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **daylight** mode!", color=self.embed_color)
+            if type == "light":
+                embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **light** mode!", color=self.embed_color)
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
                 with open('profile_image/daylight.png', 'rb') as profile_image:
@@ -24,8 +24,8 @@ class OwnerSetting(commands.Cog):
                 
                 await ctx.send(embed=embed)
                 
-            elif type == "night":
-                embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **night** mode!", color=self.embed_color)
+            elif type == "dark":
+                embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **dark** mode!", color=self.embed_color)
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
                 
                 with open('profile_image/night.png', 'rb') as profile_image:
