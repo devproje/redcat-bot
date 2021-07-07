@@ -13,6 +13,8 @@ class Help(commands.Cog):
 
     @cog_ext.cog_slash(name="help", description="You can see commands list!")
     async def help(self, ctx: SlashContext, argument=None):
+        await ctx.defer()
+
         if argument == "music":
             await ctx.send(embed=help_music(ctx, self.embed_color))
         elif argument == None:
