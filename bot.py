@@ -27,7 +27,7 @@ for filename in os.listdir("Cogs"):
 
 @bot.event
 async def on_ready():
-    print("Logined for RedCat")
+    print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
 
 @slash.slash(name="version")
