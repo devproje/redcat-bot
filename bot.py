@@ -39,7 +39,7 @@ async def activity_switcher():
     await bot.wait_until_ready()
 
     while not bot.is_closed():
-        await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
+        await bot.change_presence(activity=discord.Game(f"Uptime: {get_uptime()}"))
         asyncio.sleep(5)
 
         await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
