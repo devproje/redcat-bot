@@ -42,7 +42,7 @@ async def activity_switcher(games):
     while not bot.is_closed():
         for g in games:
             await bot.change_presence(activity = discord.Game(g))
-            await asyncio.sleep(30)
+            await asyncio.sleep(20)
 
 host = f"Hosting by **{host_name}**"
 
