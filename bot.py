@@ -35,18 +35,21 @@ async def on_ready():
     await switch_activity()
 
 async def switch_activity():
-    await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
-    time.sleep(3)
-    await bot.change_presence(activity=discord.Game(f"Uptime: {get_uptime()}"))
-    time.sleep(3)
+    while (True):
+        await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
+        time.sleep(3)
+        await bot.change_presence(activity=discord.Game(f"Uptime: {get_uptime()}"))
+        time.sleep(3)
+    
 
 async def avatarmode_switcher():
-    if now.hour == 6 and now.minute == 0 and now.second == 0:
-        with open('profile_image/light.png', 'rb') as profile_image:
-            await bot.user.edit(avatar=profile_image.read())
+    while (True):
+        if now.hour == 6 and now.minute == 0 and now.second == 0:
+            with open('profile_image/light.png', 'rb') as profile_image:
+                await bot.user.edit(avatar=profile_image.read())
 
-    elif now.hour == 18 and now.minute == 0 and now.second == 0:
-        with open('profile_image/dark.png', 'rb') as profile_image:
+        elif now.hour == 18 and now.minute == 0 and now.second == 0:
+            with open('profile_image/dark.png', 'rb') as profile_image:
                 await bot.user.edit(avatar=profile_image.read())
 
 @slash.slash(name="version")
