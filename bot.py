@@ -35,9 +35,6 @@ async def on_ready():
     
     activity = [f"{bot_name} {bot_version}", f"Uptime: {get_uptime()}"]
     await activity_switcher(activity)
-    
-    await avatarmode_switcher()
-
 
 async def activity_switcher(games):
     await bot.wait_until_ready()
@@ -47,29 +44,18 @@ async def activity_switcher(games):
             await bot.change_presence(activity = discord.Game(g))
             await asyncio.sleep(30)
 
-async def avatarmode_switcher():
-    await bot.wait_until_ready()
-    
-    while not bot.is_closed():
-        if now.hour == 6 and now.minute == 0 and now.second == 0:
-            with open('profile_image/light.png', 'rb') as profile_image:
-                await bot.user.edit(avatar=profile_image.read())
+host = f"Hosting by **{host_name}**"
 
-            asyncio.sleep(0.1)
-
-        elif now.hour == 18 and now.minute == 0 and now.second == 0:
-            with open('profile_image/dark.png', 'rb') as profile_image:
-                await bot.user.edit(avatar=profile_image.read())
-        
-            asyncio.sleep(0.1)
-
-@slash.slash(name="version")
+@slash.slash(name="botinfo", description="You can show bot info.")
 async def version(ctx: SlashContext):
-    embed = (discord.Embed(title=f":dart: {bot_name} **Version**", description="This is command list", color=embed_color)
-        .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
-        .add_field(name=f"**Author**", value=author_name, inline=True)
-        .add_field(name=f"**Contributers**", value=contributers, inline=True)
-    
+    embed = (discord.Embed(title=f":dart: **{bot_name}** info", description=f"{host}", color=embed_color)
+        .add_field(name="**Name**", value=f"`{bot_name}`")
+        .add_field(name=f"**Version**", value=f"`{bot_version}`", inline=True)
+        .add_field(name="**Type**", value="**Opensource Bot**", inline=True)
+        .add_field(name=f"**Author**", value=f"`{author_name}`", inline=True)
+        .add_field(name=f"**Contributers**", value=f"`{contributers}`", inline=True)
+        .add_field(name="**Github**", value=f"[{bot_name} Github](https://github.com/ProjectTL12345/redcat-bot)", inline=True)
+
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
     await ctx.channel.send(embed=embed)
 
@@ -81,7 +67,6 @@ def get_uptime():
 
 @slash.slash(name="status")
 async def status(ctx: SlashContext):
-    host = f"Hosting by **{host_name}**"
     embed=(discord.Embed(title=f"{bot_name} {bot_version} Status", description=f"{host}", color=embed_color)
         .add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
         .add_field(name="**RAM USAGE**", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
