@@ -1,4 +1,4 @@
-import discord, os, psutil, platform, time
+import discord, os, psutil, platform, asyncio
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from datetime import timedelta, datetime
@@ -32,9 +32,19 @@ async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
     await avatarmode_switcher()
+    await activity_switcher()
+
+
+async def activity_switcher():
+    while not bot.is_closed():
+        await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
+        asyncio.sleep(5)
+        
+        await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
+        asyncio.sleep(5)
     
 async def avatarmode_switcher():
-    while (True):
+    while not bot.is_closed():
         if now.hour == 6 and now.minute == 0 and now.second == 0:
             with open('profile_image/light.png', 'rb') as profile_image:
                 await bot.user.edit(avatar=profile_image.read())
