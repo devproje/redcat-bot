@@ -45,7 +45,7 @@ async def activity_switcher(games):
     while not bot.is_closed():
         for g in games:
             await bot.change_presence(activity = discord.Game(g))
-            await asyncio.sleep(5)
+            await asyncio.sleep(30)
 
 async def avatarmode_switcher():
     await bot.wait_until_ready()
