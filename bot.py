@@ -88,6 +88,6 @@ async def status(ctx: SlashContext):
 
 @slash.slash(name="version")
 async def version(ctx: SlashContext):
-    await ctx.send(f"I'm {bot_version}")
+    await ctx.send(f"My version is {bot_version}")
 
 bot.run(token)
