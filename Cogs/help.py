@@ -30,7 +30,7 @@ class Help(commands.Cog):
                 .add_field(name="`/meme`", value="You can use Project_TL's meme image!", inline=True)
                 .add_field(name="`/help`", value="Open help embed", inline=True)
             
-                .add_field(name="**Normal Command**", value="This is normal command help (prefix \"\\\")", inline=False)
+                .add_field(name="**Normal Command**", value="This is normal command help (prefix = \\)", inline=False)
                 .add_field(name="`\\music help`", value="You can see music command options!", inline=True))
 
             if ctx.author.id != self.author_id:
