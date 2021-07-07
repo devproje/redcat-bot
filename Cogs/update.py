@@ -13,6 +13,8 @@ class Update(commands.Cog):
     
     @cog_ext.cog_slash(name="update", description="Bot owner can update source with github repositories")
     async def update_code(self, ctx: SlashContext):
+        await ctx.respond()
+
         if ctx.author.id != self.author_id:
             embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
