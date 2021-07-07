@@ -13,6 +13,8 @@ class Reload(commands.Cog):
 
     @cog_ext.cog_slash(name="reload")
     async def reload_commands(self, ctx: SlashContext, extension=None):
+        await ctx.defer()
+
         if ctx.author.id == self.owner_id:
             if extension is None:
                 for filename in os.listdir("Cogs"):

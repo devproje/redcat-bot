@@ -20,7 +20,10 @@ class Update(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.channel.send(embed=embed)
         else:
-            cmd = ["git", "pull", "origin", "master"]
+            os.system("git add .")
+            os.system("git commit -m \"script: push by remote server\"")
+
+            cmd = ["git", "push", "origin", "master"]
             fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
             data = fd_popen.read().strip()
             data_conv = data.decode('utf-8')
