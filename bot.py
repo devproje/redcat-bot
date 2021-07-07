@@ -27,24 +27,27 @@ for filename in os.listdir("Cogs"):
 
 now = datetime.now()
 
+
 @bot.event
 async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
-    await avatarmode_switcher()
-    await activity_switcher()
+    
+    activity = [f"{bot_name} {bot_version}", f"Uptime: {get_uptime()}"]
+    await activity_switcher(activity)
+    
+    # await avatarmode_switcher()
 
 
-async def activity_switcher():
+async def activity_switcher(games):
     await bot.wait_until_ready()
 
     while not bot.is_closed():
-        await bot.change_presence(activity=discord.Game(f"Uptime: {get_uptime()}"))
-        asyncio.sleep(5)
+        for g in games:
+            await bot.change_presence(activity = discord.Game(g))
+            await asyncio.sleep(5)
 
-        await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
-        asyncio.sleep(5)
-    
+"""   
 async def avatarmode_switcher():
     await bot.wait_until_ready()
     
@@ -56,6 +59,7 @@ async def avatarmode_switcher():
         elif now.hour == 18 and now.minute == 0 and now.second == 0:
             with open('profile_image/dark.png', 'rb') as profile_image:
                 await bot.user.edit(avatar=profile_image.read())
+"""
 
 @slash.slash(name="version")
 async def version(ctx: SlashContext):
