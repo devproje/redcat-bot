@@ -1,7 +1,7 @@
 import discord, os, psutil, platform
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
@@ -24,6 +24,8 @@ token = open_token.read().split()[0]
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
         bot.load_extension(f"Cogs.{filename[:-3]}")
+
+now = datetime.now()
 
 @bot.event
 async def on_ready():
