@@ -402,7 +402,7 @@ class Music(commands.Cog):
     @cog_ext.cog_slash(name='play', description="Play music")
     async def _play(self, ctx: SlashContext, *, search: str):
         if not ctx.voice_state.voice:
-            await ctx.invoke(self._join)
+            await ctx.invoked_with(self._join)
 
         async with ctx.typing():
             try:
