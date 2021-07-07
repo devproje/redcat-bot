@@ -36,14 +36,18 @@ async def on_ready():
 
 
 async def activity_switcher():
+    await bot.wait_until_ready()
+
     while not bot.is_closed():
         await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
         asyncio.sleep(5)
-        
+
         await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
         asyncio.sleep(5)
     
 async def avatarmode_switcher():
+    await bot.wait_until_ready()
+    
     while not bot.is_closed():
         if now.hour == 6 and now.minute == 0 and now.second == 0:
             with open('profile_image/light.png', 'rb') as profile_image:
