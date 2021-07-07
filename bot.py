@@ -1,4 +1,4 @@
-import discord, os, psutil, platform
+import discord, os, psutil, platform, time
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from datetime import timedelta, datetime
@@ -32,6 +32,13 @@ async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
     await avatarmode_switcher()
+    await switch_activity()
+
+async def switch_activity():
+    await bot.change_presence(activity=discord.Game(f"{bot_name} {bot_version}"))
+    time.sleep(3)
+    await bot.change_presence(activity=discord.Game(f"Uptime: {get_uptime()}"))
+    time.sleep(3)
 
 async def avatarmode_switcher():
     if now.hour == 6 and now.minute == 0 and now.second == 0:
