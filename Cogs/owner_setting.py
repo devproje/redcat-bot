@@ -16,7 +16,7 @@ class OwnerSetting(commands.Cog):
     async def avatar_image(self, ctx, *, sub_command, type):
         if ctx.author.id == self.owner_id:
             if sub_command == "avatar":
-                if type == "day":
+                if type == "daylight":
                     embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **daylight** mode!", color=self.embed_color)
                         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
