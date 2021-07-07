@@ -8,7 +8,7 @@ def setup(bot):
 class Avatar(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xED4245
 
     @cog_ext.cog_slash(name="avatar", description="You can grab target person's avatar image")
     async def avatar(self, ctx: SlashContext, member: discord.User = None or discord.User.mention == None):

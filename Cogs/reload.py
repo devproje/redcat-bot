@@ -9,7 +9,7 @@ class Reload(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.owner_id = 415801068174180352
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xED4245
 
     @cog_ext.cog_slash(name="reload")
     async def reload_commands(self, ctx: SlashContext, extension=None):

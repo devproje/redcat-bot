@@ -8,7 +8,7 @@ def setup(bot):
 class PingPong(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xED4245
 
     @commands.command(name="ping")
     async def ping(self, ctx):

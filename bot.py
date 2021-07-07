@@ -6,13 +6,16 @@ from datetime import timedelta
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
+bot_name="RedCat"
 bot_version="v1.0.0"
-embed_color = 0x75B8FF
 
 author_name="Project_TL#9436"
 contributers=["None"]
 
+embed_color = 0xED4245
 owner_id = 415801068174180352
+
+host_name="ADP_Community"
 
 token_path = "token.txt"
 open_token = open(token_path, "r", encoding = "utf-8")
@@ -24,12 +27,12 @@ for filename in os.listdir("Cogs"):
 
 @bot.event
 async def on_ready():
-    print("Logined for ProjectBot")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"ProjectBot {bot_version}"))
+    print("Logined for RedCat")
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
 
 @slash.slash(name="version")
 async def version(ctx: SlashContext):
-    embed = (discord.Embed(title=":dart: **Version**", description="This is command list", color=embed_color)
+    embed = (discord.Embed(title=f":dart: {bot_name} **Version**", description="This is command list", color=embed_color)
         .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
         .add_field(name=f"**Author**", value=author_name, inline=True)
         .add_field(name=f"**Contributers**", value=contributers, inline=True)
@@ -45,8 +48,8 @@ def get_uptime():
 
 @slash.slash(name="status")
 async def status(ctx: SlashContext):
-    host = "Hosting by **ADP_Community**"
-    embed=(discord.Embed(title=f"ProjectBot-remake {bot_version} Status", description=f"{host}", color=embed_color)
+    host = f"Hosting by **{host_name}**"
+    embed=(discord.Embed(title=f"{bot_name} {bot_version} Status", description=f"{host}", color=embed_color)
         .add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
         .add_field(name="**RAM USAGE**", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
         .add_field(name="**AVAILABLE USAGE**", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%__", inline=True)

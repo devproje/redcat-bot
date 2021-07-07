@@ -27,7 +27,7 @@ def image_selector(number):
 class Mime(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xED4245
 
     @commands.command(name="meme")
     async def _meme(self, ctx, argument=None):

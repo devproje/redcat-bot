@@ -8,7 +8,7 @@ def setup(bot):
 class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.embed_color = 0x75B8FF
+        self.embed_color = 0xED4245
         self.author_id=415801068174180352
 
     @cog_ext.cog_slash(name="help", description="You can see commands list!")
