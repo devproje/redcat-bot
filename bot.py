@@ -49,11 +49,11 @@ host = f"Hosting by **{host_name}**"
 @slash.slash(name="botinfo", description="You can show bot info.")
 async def version(ctx: SlashContext):
     embed = (discord.Embed(title=f":dart: **{bot_name}** info", description=f"{host}", color=embed_color)
-        .add_field(name="**Name**", value=f"`{bot_name}`")
-        .add_field(name=f"**Version**", value=f"`{bot_version}`", inline=True)
-        .add_field(name="**Type**", value="**Opensource Bot**", inline=True)
-        .add_field(name=f"**Author**", value=f"`{author_name}`", inline=True)
-        .add_field(name=f"**Contributers**", value=f"`{contributers}`", inline=True)
+        .add_field(name="**Name**", value=f"{bot_name}")
+        .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
+        .add_field(name="**Type**", value="Opensource Bot", inline=True)
+        .add_field(name=f"**Author**", value=f"{author_name}", inline=True)
+        .add_field(name=f"**Contributers**", value=f"{contributers}", inline=True)
         .add_field(name="**Github**", value=f"[{bot_name} Github](https://github.com/ProjectTL12345/redcat-bot)", inline=True)
 
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
