@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 def setup(bot):
     bot.add_cog(Help(bot))
@@ -10,24 +11,10 @@ class Help(commands.Cog):
         self.embed_color = 0x75B8FF
         self.author_id=415801068174180352
 
-    @commands.command(name="help")
-    async def help(self, ctx, argument=None):
+    @cog_ext.cog_slash(name="help", description="You can see commands list!")
+    async def help(self, ctx: SlashContext, argument=None):
         if argument == "music":
-            embed = (discord.Embed(title="**Music Help**", description="This is music options!", color=self.embed_color)
-                .add_field(name="`\\play <url or name>`", value="Play music", inline=True)
-                .add_field(name="`\\pause`", value="Pause music", inline=True)
-                .add_field(name="`\\resume`", value="Resume music", inline=True)
-                .add_field(name="`\\now`", value="Checking playing music", inline=True)
-                .add_field(name="`\\queue`", value="Checking play list", inline=True)
-                .add_field(name="`\\stop`", value="Stop all music", inline=True)
-                .add_field(name="`\\skip`", value="Skip current music", inline=True)
-                .add_field(name="`\\shuffle`", value="Shuffle current queue", inline=True)
-                .add_field(name="`\\loop`", value="Loop current music", inline=True)
-                .add_field(name="`\\remove <array_number>`", value="Remove queued target music", inline=True)
-                .add_field(name="`\\leave`", value="Leave bot", inline=True)
-                .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-            await ctx.send(embed=embed)
-
+            await ctx.send(embed=help_music(ctx, self.embed_color))
         elif argument == None:
             embed = (discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
                 .add_field(name="**Slash Command**", value="Slash command help\n**This feature is beta!**", inline=False)
@@ -41,9 +28,9 @@ class Help(commands.Cog):
                 .add_field(name="`/clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
                 .add_field(name="`/status`", value="You can see instance status!", inline=True)
                 .add_field(name="`/meme`", value="You can use Project_TL's meme image!", inline=True)
+                .add_field(name="`/help`", value="Open help embed", inline=True)
             
                 .add_field(name="**Normal Command**", value="This is normal command help (prefix \"\\\")", inline=False)
-                .add_field(name="`\\help`", value="Open help embed", inline=True)
                 .add_field(name="`\\music help`", value="You can see music command options!", inline=True))
 
             if ctx.author.id != self.author_id:
@@ -64,4 +51,19 @@ class Help(commands.Cog):
             embed = (discord.Embed(title=":no_entry_sign: **Error!**", description=f"**{argument}** is not exist", color=self.embed_color))
             await ctx.channel.send(embed=embed)
         
-        
+def help_music(ctx, embed_color):
+    embed = (discord.Embed(title="**Music Help**", description="This is music options!", color=embed_color)
+        .add_field(name="`\\play <url or name>`", value="Play music", inline=True)
+        .add_field(name="`\\pause`", value="Pause music", inline=True)
+        .add_field(name="`\\resume`", value="Resume music", inline=True)
+        .add_field(name="`\\now`", value="Checking playing music", inline=True)
+        .add_field(name="`\\queue`", value="Checking play list", inline=True)
+        .add_field(name="`\\stop`", value="Stop all music", inline=True)
+        .add_field(name="`\\skip`", value="Skip current music", inline=True)
+        .add_field(name="`\\shuffle`", value="Shuffle current queue", inline=True)
+        .add_field(name="`\\loop`", value="Loop current music", inline=True)
+        .add_field(name="`\\remove <array_number>`", value="Remove queued target music", inline=True)
+        .add_field(name="`\\leave`", value="Leave bot", inline=True)
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+
+    return embed
