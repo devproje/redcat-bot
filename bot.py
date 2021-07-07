@@ -31,6 +31,16 @@ now = datetime.now()
 async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
+    await avatarmode_switcher()
+
+async def avatarmode_switcher():
+    if now.hour == 6 and now.minute == 0 and now.second == 0:
+        with open('profile_image/light.png', 'rb') as profile_image:
+            await bot.user.edit(avatar=profile_image.read())
+
+    elif now.hour == 18 and now.minute == 0 and now.second == 0:
+        with open('profile_image/dark.png', 'rb') as profile_image:
+                await bot.user.edit(avatar=profile_image.read())
 
 @slash.slash(name="version")
 async def version(ctx: SlashContext):
