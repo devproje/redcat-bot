@@ -1,6 +1,7 @@
 import asyncio, functools, itertools, math, random, discord, youtube_dl
 from async_timeout import timeout
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
 
 def setup(bot):
     bot.add_cog(Music(bot))
@@ -398,8 +399,8 @@ class Music(commands.Cog):
         ctx.voice_state.loop = not ctx.voice_state.loop
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='play', aliases=["p"])
-    async def _play(self, ctx, *, search: str):
+    @cog_ext.cog_slash(name='play', description="Play music")
+    async def _play(self, ctx: SlashContext, *, search: str):
         if not ctx.voice_state.voice:
             await ctx.invoke(self._join)
 
