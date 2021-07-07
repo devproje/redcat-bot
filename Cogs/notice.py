@@ -19,6 +19,6 @@ class Notice(commands.Cog):
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title=":satellite: **Notice!**", description=text, color=self.embed_color)
+            embed = discord.Embed(title=":satellite: **Notice!**", description=f"{text}", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
