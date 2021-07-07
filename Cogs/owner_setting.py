@@ -19,7 +19,7 @@ class OwnerSetting(commands.Cog):
                 embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **light** mode!", color=self.embed_color)
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
-                with open('profile_image/daylight.png', 'rb') as profile_image:
+                with open('profile_image/light.png', 'rb') as profile_image:
                     await self.bot.user.edit(avatar=profile_image.read())
                 
                 await ctx.send(embed=embed)
@@ -28,7 +28,7 @@ class OwnerSetting(commands.Cog):
                 embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **dark** mode!", color=self.embed_color)
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
                 
-                with open('profile_image/night.png', 'rb') as profile_image:
+                with open('profile_image/dark.png', 'rb') as profile_image:
                     await self.bot.user.edit(avatar=profile_image.read())
 
                 await ctx.send(embed=embed)
