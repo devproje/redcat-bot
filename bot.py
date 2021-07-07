@@ -48,6 +48,8 @@ host = f"Hosting by **{host_name}**"
 
 @slash.slash(name="botinfo", description="You can show bot info.")
 async def version(ctx: SlashContext):
+    await ctx.defer()
+    
     embed = (discord.Embed(title=f":dart: **{bot_name}** info", description=f"{host}", color=embed_color)
         .add_field(name="**Name**", value=f"{bot_name}")
         .add_field(name=f"**Version**", value=f"{bot_version}", inline=True)
