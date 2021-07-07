@@ -1,4 +1,3 @@
-"""
 import discord
 from discord.ext import commands
 from discord_slash import cog_ext, SlashContext
@@ -9,6 +8,7 @@ def setup(bot):
 class OwnerSetting(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        
         self.embed_color = 0xED4245
         self.owner_id = 415801068174180352
 
@@ -44,4 +44,3 @@ class OwnerSetting(commands.Cog):
                     .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
             await ctx.send(embed=embed)
-"""
