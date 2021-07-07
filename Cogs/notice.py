@@ -13,7 +13,7 @@ class Notice(commands.Cog):
         self.author_id = 415801068174180352
 
     @cog_ext.cog_slash(name="notice", description="TEST FUNCTION!")
-    async def notice(self, ctx: SlashContext, text):
+    async def notice(self, ctx: SlashContext, text: str):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(title=":stop_sign: **Error!**", description="You're not bot owner!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
