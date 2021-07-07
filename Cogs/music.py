@@ -253,7 +253,7 @@ class Music(commands.Cog):
 
         self.embed_color = 0x75B8FF
 
-    def get_voice_state(self, ctx: commands.Context):
+    def get_voice_state(self, ctx: SlashContext):
         state = self.voice_states.get(ctx.guild.id)
         if not state:
             state = VoiceState(self.bot, ctx)
@@ -265,16 +265,16 @@ class Music(commands.Cog):
         for state in self.voice_states.values():
             self.bot.loop.create_task(state.stop())
 
-    def cog_check(self, ctx: commands.Context):
+    def cog_check(self, ctx: SlashContext):
         if not ctx.guild:
             raise commands.NoPrivateMessage('This command can\'t be used in DM channels.')
 
         return True
 
-    async def cog_before_invoke(self, ctx: commands.Context):
+    async def cog_before_invoke(self, ctx: SlashContext):
         ctx.voice_state = self.get_voice_state(ctx)
 
-    async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
+    async def cog_command_error(self, ctx: SlashContext, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
 
     @cog_ext.cog_slash(name='join')
