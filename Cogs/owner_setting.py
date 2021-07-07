@@ -11,7 +11,7 @@ class OwnerSetting(commands.Cog):
         self.embed_color = 0xED4245
         self.owner_id = 415801068174180352
 
-    @cog_ext.cog_slash(name="avatarimage", description="Owner's Settings!")
+    @cog_ext.cog_slash(name="setting", description="Owner's Settings!")
     async def avatar_image(self, ctx: SlashContext, type):
         if ctx.author.id == self.owner_id:
             if type == "day":
