@@ -25,7 +25,7 @@ class Help(commands.Cog):
                 .add_field(name="`/wincho <action>`", value="you can broken wintchoco", inline=True)
                 .add_field(name="`/윈초 <action>`", value="당신은 윈초를 괴롭힐 수 있습니다", inline=True)
                 .add_field(name="`/avatar <mention>`", value="You can grab target person's avatar image", inline=True)
-                .add_field(name="`/version`", value="You can see this bot version", inline=True)
+                .add_field(name="`/botinfo`", value="You can see this bot version", inline=True)
                 .add_field(name="`/clear <amount>`", value="You can remove chat **(Admin or bot owner only)**", inline=True)
                 .add_field(name="`/status`", value="You can see instance status!", inline=True)
                 .add_field(name="`/meme`", value="You can use Project_TL's meme image!", inline=True)
@@ -67,7 +67,16 @@ class Help(commands.Cog):
         
         elif argument == "avatar":
             await ctx.send(embed=helper.avatar(ctx, self.embed_color))
-        
+
+        elif argument == "botinfo":
+            await ctx.send(embed=helper.botinfo(ctx, self.embed_color))
+
+        elif argument == "clear":
+            await ctx.send(embed=helper.clear(ctx, self.embed_color))
+
+        elif argument == "status":
+            await ctx.send(embed=helper.status(ctx, self.embed_color))
+
         else:
             embed = (discord.Embed(title=":no_entry_sign: **Error!**", description=f"**{argument}** is not exist", color=self.embed_color))
             await ctx.channel.send(embed=embed)
@@ -104,4 +113,40 @@ class EmbedHelper():
     def carrot(self, ctx, embed_color):
         embed = (discord.Embed(title=":carrot: **Carrot Help**", description="If you type `/carrot`, Bot will throw carrot.", color=embed_color)
             .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+        return embed
+        
+    def wincho(self, ctx, embed_color, korean):
+        if not korean == True:
+            embed = (discord.Embed(title=":question: **Wincho Help**", description="`/wincho` `<burn | smash | melt | call | 프젝기술>`", color=0xFFF1D6)
+            .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+
+            return embed
+        else:
+            embed = (discord.Embed(title=":question: **윈초 커맨드 도움말**", description="`/윈초` `<녹이기 | 부수기 | 녹이기 | 부르기 | 프젝기술>`", color=0xFFF1D6)
+            .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+            
+            return embed
+
+    def avatar(self, ctx, embed_color):
+        embed = (discord.Embed(title=":frame_photo: **Avatar Help**", description="If you want use this, please mention person!\n`(Notification is not sented with mention person)`", color=self.embed_color)
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+       
+        return embed
+
+    def botinfo(self, ctx, embed_color):
+        embed = (discord.Embed(title=":question: **Botinfo Help**", description="If you wanna bot's informations, please type `/botinfo`", color=embed_color)
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+
+        return embed
+    
+    def clear(self, ctx, embed_color):
+        embed = (discord.Embed(title=":question: **Clear Help**", description="You can clear chat! (MAX: 300, MIN: 1)\nEx) `/clear Integer`")
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+
+        return embed
+    
+    def status(self, ctx, embed_color):
+        embed = (discord.Embed(title=":question: **Status Help**", description="If you wanna see remote hosting status, please type `/status`")
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+
         return embed
