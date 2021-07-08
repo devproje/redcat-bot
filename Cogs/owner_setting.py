@@ -22,10 +22,10 @@ class OwnerSetting(commands.Cog):
                     await ctx.send(embed=embed)
 
                 else:
-                    embed = (discord.Embed(title=":white_check_mark: **Done!**", description="CatBot's avatar mode is **light** mode!", color=self.embed_color)
+                    embed = (discord.Embed(title=":white_check_mark: **Done!**", description=f"CatBot's avatar mode is {extention} **{type}** mode!", color=self.embed_color)
                         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
-                    with open(f'profile_image/{extention}_{type}.png', 'rb') as profile_image:
+                    with open(f'profile_image/{extention}/{type}.png', 'rb') as profile_image:
                         await self.bot.user.edit(avatar=profile_image.read())
                 
                     await ctx.send(embed=embed)
