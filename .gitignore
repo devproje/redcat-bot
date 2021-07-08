@@ -2,4 +2,5 @@
 /.idea/
 /__pycache__/
 /Cogs/__pycache__/
+/.vscode/
 /profile_image/
