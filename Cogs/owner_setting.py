@@ -15,12 +15,7 @@ class OwnerSetting(commands.Cog):
     @cog_ext.cog_slash(name="set_avatar", description="Owner's Settings!")
     async def avatar_setting(self, ctx, *, extention, type):
         if ctx.author.id == self.owner_id:
-            if extention == None:
-                embed = (discord.Embed(title=":no_entry: **Error**", description="Extention must not None", color=self.embed_color)
-                    .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-                await ctx.send(embed=embed)
-
-            else:
+            if not extention == None:
                 if type == None:
                     embed = (discord.Embed(title=":no_entry: **Error**", description="Type must not None", color=self.embed_color)
                         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
@@ -34,6 +29,10 @@ class OwnerSetting(commands.Cog):
                         await self.bot.user.edit(avatar=profile_image.read())
                 
                     await ctx.send(embed=embed)
+            else:
+                embed = (discord.Embed(title=":no_entry: **Error**", description="Extention must not None", color=self.embed_color)
+                    .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+                await ctx.send(embed=embed)
 
         else:
             embed = (discord.Embed(title=":no_entry: **Error!**", description="You're not bot owner!", color=self.embed_color)
