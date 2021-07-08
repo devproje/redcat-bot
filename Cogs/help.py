@@ -76,6 +76,9 @@ class Help(commands.Cog):
 
         elif argument == "status":
             await ctx.send(embed=helper.status(ctx, self.embed_color))
+        
+        elif argument == "meme":
+            await ctx.send(embed=helper.meme(ctx, self.embed_color))
 
         else:
             embed = (discord.Embed(title=":no_entry_sign: **Error!**", description=f"**{argument}** is not exist", color=self.embed_color))
