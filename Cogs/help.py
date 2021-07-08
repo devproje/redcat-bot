@@ -32,6 +32,9 @@ class Help(commands.Cog):
 
         elif argument == "윈초":
             await ctx.send(embed=wincho(ctx, self.embed_color, True))
+        
+        elif argument == "avatar":
+            await ctx.send(embed=avatar(ctx, self.embed_color))
 
         elif argument == None:
             embed = (discord.Embed(title=":dart: **Help**", description="**This is command list**", color=self.embed_color)
@@ -67,6 +70,11 @@ class Help(commands.Cog):
         else:
             embed = (discord.Embed(title=":no_entry_sign: **Error!**", description=f"**{argument}** is not exist", color=self.embed_color))
             await ctx.channel.send(embed=embed)
+
+def avatar(ctx, embed_color):
+    embed = (discord.Embed(title=":frame_photo: **Avatar Help**", description="If you want use this, please mention person!\n(Notification is not sented with mention person)", color=self.embed_color)
+        .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
+    return embed
 
 def wincho(ctx, embed_color, korean):
     if not korean == True:

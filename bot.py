@@ -56,6 +56,7 @@ async def version(ctx: SlashContext):
         .add_field(name="**Type**", value="Opensource Bot", inline=True)
         .add_field(name=f"**Author**", value=f"{author_name}", inline=True)
         .add_field(name=f"**Contributers**", value=f"{contributers}", inline=True)
+        .set_thumbnail(url=bot.user.avatar_url)
         .add_field(name="**Github**", value=f"[{bot_name} Github](https://github.com/ProjectTL12345/redcat-bot)", inline=True)
 
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
