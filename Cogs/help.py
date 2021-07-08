@@ -150,3 +150,9 @@ class EmbedHelper():
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
 
         return embed
+
+    def meme(self, ctx, embed_color):
+        embed = discord.Embed(title=":question: **Meme Help**", description="`\\meme` `<정의의후폭풍 | 핵폭탄 | 극장폭파 | 의사양반 or 의사양반2 | 섬광탄 | 파괴>`", color=embed_color)
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator} * Powered by Google Drive", icon_url=ctx.author.avatar_url)
+        
+        return embed

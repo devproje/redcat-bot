@@ -32,7 +32,7 @@ class Mime(commands.Cog):
     @commands.command(name="meme")
     async def _meme(self, ctx, argument=None):
         if argument is None:
-            embed = discord.Embed(title=":question: 밈 도움말", description="`\\meme` `<정의의후폭풍 | 핵폭탄 | 극장폭파 | 의사양반 or 의사양반2 | 섬광탄 | 파괴>`", color=self.embed_color)
+            embed = discord.Embed(title=":no_entry: **에러발생**", description="구문은 공백이 될 수 없습니다.", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator} * Powered by Google Drive", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
         elif argument == "정의의후폭풍":
