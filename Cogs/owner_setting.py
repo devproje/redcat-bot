@@ -13,7 +13,7 @@ class OwnerSetting(commands.Cog):
         self.owner_id = 415801068174180352
 
     @cog_ext.cog_slash(name="set_avatar", description="Owner's Settings!")
-    async def settings(self, ctx, *, extention, type):
+    async def avatar_setting(self, ctx, *, extention, type):
         if ctx.author.id == self.owner_id:
             if extention == None:
                 embed = (discord.Embed(title=":no_entry: **Error**", description="Extention must not None", color=self.embed_color)
