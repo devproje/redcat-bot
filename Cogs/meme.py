@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import cog_ext
 
 def setup(bot):
     bot.add_cog(Mime(bot))
@@ -29,7 +30,7 @@ class Mime(commands.Cog):
         self.bot = bot
         self.embed_color = 0xED4245
 
-    @commands.command(name="meme")
+    @cog_ext.cog_slash(name="meme", description="You can use Project_TL's meme image!")
     async def _meme(self, ctx, argument=None):
         if argument is None:
             embed = discord.Embed(title=":no_entry: **에러발생**", description="구문은 공백이 될 수 없습니다.", color=self.embed_color)
