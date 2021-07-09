@@ -12,7 +12,7 @@ class OwnerSetting(commands.Cog):
         self.embed_color = 0xED4245
         self.owner_id = 415801068174180352
 
-    @cog_ext.cog_slash(name="set_avatar", description="Owner's Settings!")
+    @cog_ext.cog_slash(name="set_avatar", description="This is test command!")
     async def avatar_setting(self, ctx, *, extention, type):
         if ctx.author.id == self.owner_id:
             if not extention == None:
