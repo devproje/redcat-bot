@@ -44,6 +44,64 @@ async def activity_switcher(games):
             await bot.change_presence(activity = discord.Game(g))
             await asyncio.sleep(20)
 
+@slash.slash(name="load", description="You can load command")
+async def load(ctx: SlashContext, extension):
+    if ctx.author.id != self.author_id:
+        embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't loaded **{extension}**!\nBecause you're not bot owner!")
+        await ctx.send(embed=embed)
+    else:
+        bot.load_extension(f"Cogs.{extension}")
+        embed = discord.Embed(title=f":white_check_mark: **Done!**", description=f"**{extension}** has successful loaded!")
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        
+        await ctx.send(embed=embed)
+
+
+@slash.slash(name="unload", description="You can unload command")
+async def unload(ctx: SlashContext, extension):
+    if ctx.author.id != self.author_id:
+        embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't unloaded **{extension}**!\nBecause you're not bot owner!")
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        
+        await ctx.send(embed=embed)
+    else:
+        bot.unload_extension(f"Cogs.{extension}")
+        embed = discord.Embed(title=f":white_check_mark: **Done!**", description=f"**{extension}** has successful unloaded!")
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        
+        await ctx.send(embed=embed)
+
+@slash.slash(name="reload")
+async def reload_commands(ctx: SlashContext, extension=None):
+    await ctx.defer()
+    reboot_embed_color = 0xED4245
+
+    if ctx.author.id == owner_id:
+        if extension is None:
+            for filename in os.listdir("Cogs"):
+                if filename.endswith(".py"):
+                    bot.unload_extension(f"Cogs.{filename[:-3]}")
+                    bot.load_extension(f"Cogs.{filename[:-3]}")
+
+            embed = discord.Embed(name=":white_check_mark: Done!", description="All command is reloaded!", color=reboot_embed_color)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            await ctx.channel.send(embed=embed)
+        
+        else:
+            bot.unload_extension(f"Cogs.{extension}")
+            bot.load_extension(f"Cogs.{extension}")
+            
+            embed = discord.Embed(name=":white_check_mark: Done!", description=f"{extension} is reloaded!", color=reboot_embed_color)
+            embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+            
+            await ctx.channel.send(embed=embed)
+    
+    else:
+        embed = discord.Embed(name=":stop_sign: Error", description="You're not bot owner!", color=reboot_embed_color)
+        embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
+        
+        await ctx.channel.send(embed=embed)
+
 host = f"Hosting by **{host_name}**"
 
 @slash.slash(name="botinfo", description="You can show bot info.")
