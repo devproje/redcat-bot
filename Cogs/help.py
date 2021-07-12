@@ -45,7 +45,7 @@ class Help(commands.Cog):
                 embed.add_field(name="`/push`", value="You can push instance code", inline=True)
                 embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
 
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
         
         elif argument == "music":
             await ctx.send(embed=helper.help_music(ctx, self.embed_color))
@@ -82,7 +82,7 @@ class Help(commands.Cog):
 
         else:
             embed = (discord.Embed(title=":no_entry_sign: **Error!**", description=f"**{argument}** is not exist", color=self.embed_color))
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
 
 class EmbedHelper():
     def help_music(self, ctx, embed_color):

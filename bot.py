@@ -85,7 +85,7 @@ async def reload_commands(ctx: SlashContext, extension=None):
 
             embed = discord.Embed(name=":white_check_mark: Done!", description="All command is reloaded!", color=reboot_embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
         
         else:
             bot.unload_extension(f"Cogs.{extension}")
@@ -94,13 +94,13 @@ async def reload_commands(ctx: SlashContext, extension=None):
             embed = discord.Embed(name=":white_check_mark: Done!", description=f"{extension} is reloaded!", color=reboot_embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
             
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
     
     else:
         embed = discord.Embed(name=":stop_sign: Error", description="You're not bot owner!", color=reboot_embed_color)
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
-        await ctx.channel.send(embed=embed)
+        await ctx.send(embed=embed)
 
 host = f"Hosting by **{host_name}**"
 
@@ -118,7 +118,7 @@ async def version(ctx: SlashContext):
         .add_field(name="**Github**", value=f"[{bot_name} Github](https://github.com/ProjectTL12345/redcat-bot)", inline=True)
 
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
-    await ctx.channel.send(embed=embed)
+    await ctx.send(embed=embed)
 
 def get_uptime():
     with open("/proc/uptime", 'r') as f:

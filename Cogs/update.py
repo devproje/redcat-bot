@@ -18,7 +18,7 @@ class Update(commands.Cog):
         if ctx.author.id != self.author_id:
             embed = discord.Embed(name=":stop_sign: Update fail!", description="You're not bot owner!", color=self.embed_color)
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
         else:
             cmd = ["git", "pull", "origin", "master"]
             fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout
@@ -30,4 +30,4 @@ class Update(commands.Cog):
                 .add_field(name="Git Status", value=f"```sh\n{data_conv}\n```", inline=False))
         
             embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
-            await ctx.channel.send(embed=embed)
+            await ctx.send(embed=embed)
