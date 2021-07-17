@@ -46,7 +46,7 @@ async def activity_switcher(games):
 
 @slash.slash(name="load", description="You can load command")
 async def load(ctx: SlashContext, extension):
-    if ctx.author.id != author_id:
+    if ctx.author.id != owner_id:
         embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't loaded **{extension}**!\nBecause you're not bot owner!")
         await ctx.send(embed=embed)
     else:
@@ -59,7 +59,7 @@ async def load(ctx: SlashContext, extension):
 
 @slash.slash(name="unload", description="You can unload command")
 async def unload(ctx: SlashContext, extension):
-    if ctx.author.id != self.author_id:
+    if ctx.author.id != owner_id:
         embed = discord.Embed(title=f":stop_sign: **Error!**", description=f"You can't unloaded **{extension}**!\nBecause you're not bot owner!")
         embed.set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url)
         
