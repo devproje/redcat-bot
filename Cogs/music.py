@@ -359,10 +359,10 @@ class Music(commands.Cog):
 
         queue = ''
         for i, song in enumerate(ctx.voice_state.songs[start:end], start=start):
-            queue += '`{0}.` [**{1.source.title}**]({1.source.url})\n'.format(i + 1, song)
+            queue += f'`{i + 1}:` [{song.source.title}]({song.source.url})\n'
 
         embed = (discord.Embed(title=":notepad_spiral: **Queue List**", description=f"**Showing {page} page**", color=self.embed_color)
-            .add_field(name='{} tracks:\n\n{}'.format(len(ctx.voice_state.songs), queue), value='page {}/{}'.format(page, pages), inline=True)
+            .add_field(name=f'{len(ctx.voice_state.songs)} tracks:\n\n{queue}', value='page {}/{}'.format(page, pages), inline=True)
             .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
         await ctx.send(embed=embed)
 
