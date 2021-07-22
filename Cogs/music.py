@@ -359,7 +359,7 @@ class Music(commands.Cog):
 
         queue = ''
         for i, song in enumerate(ctx.voice_state.songs[start:end], start=start):
-            queue += f'`{i + 1}:` {song.source.title} [click]({song.source.url})\n'
+            queue += f'`{i + 1}:` {song.source.title}\n'
 
         embed = (discord.Embed(title=":notepad_spiral: **Queue List**", description=f"**Showing {page} page**", color=self.embed_color)
             .add_field(name=f'{len(ctx.voice_state.songs)} tracks:\n\n{queue}', value='page {}/{}'.format(page, pages), inline=True)
