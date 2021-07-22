@@ -124,18 +124,18 @@ def get_uptime():
     with open("/proc/uptime", 'r') as f:
         uptime_seconds = float(f.readline().split()[0])
         t = timedelta(seconds = uptime_seconds)
-        return ("{} D | {} H | {} M".format(t.days, t.seconds // 3600, (t.seconds // 60) % 60))
+        return f"{t.days} D | {t.seconds} H | {t.seconds // 60 % 60} M"
 
 @slash.slash(name="status")
 async def status(ctx: SlashContext):
     embed=(discord.Embed(title=f"{bot_name} {bot_version} Status", description=f"{host}", color=embed_color)
-        .add_field(name="**CPU USAGE**", value=f"__{psutil.cpu_percent()}%__", inline=True)
-        .add_field(name="**RAM USAGE**", value=f"__{psutil.virtual_memory().percent}%__", inline=True)
-        .add_field(name="**AVAILABLE USAGE**", value=f"__{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%__", inline=True)
+        .add_field(name="**CPU USAGE**", value=f"{psutil.cpu_percent()}%", inline=True)
+        .add_field(name="**RAM USAGE**", value=f"{psutil.virtual_memory().percent}%", inline=True)
+        .add_field(name="**AVAILABLE USAGE**", value=f"{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%", inline=True)
 
-        .add_field(name="**UPTIME**", value=f"__{get_uptime()}__", inline=True)
-        .add_field(name="**SYSTEM INFO**", value=f"__{platform.system()} | {platform.machine()}__", inline=True)
-        .add_field(name="**LATENCY**", value=f"__{round(bot.latency * 1000)}ms__", inline=True)
+        .add_field(name="**UPTIME**", value=f"{get_uptime()}", inline=True)
+        .add_field(name="**SYSTEM INFO**", value=f"{platform.system()} | {platform.machine()}", inline=True)
+        .add_field(name="**LATENCY**", value=f"{round(bot.latency * 1000)}ms", inline=True)
         
         .add_field(name="**PYTHON VER**", value=f"{platform.python_version()}")
         .add_field(name="**OWNER**", value=author_name, inline=True)
