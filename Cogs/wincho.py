@@ -42,7 +42,8 @@ class WinCho(commands.Cog):
         self.author_id = 415801068174180352
 
     @cog_ext.cog_slash(name="wincho", description="You can broken wintchoco")
-    async def wincho(self, ctx: SlashContext, wincho_action=None):
+    async def wincho(self, ctx: SlashContext, wincho_action):
+        ctx.defer()
         if wincho_action == "smash":
             embed = discord.Embed(description="**Smashing Wincho!**", color=self.embed_color)
             embed.set_image(url=get_image(1))
@@ -58,7 +59,7 @@ class WinCho(commands.Cog):
                 embed = discord.Embed(title=":no_entry: **Execute Error!**", description="**This command is only use bot owner!**", color=self.embed_color)
                 await ctx.send(embed=embed)
             else:
-                await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
+                await ctx.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "burn":
             embed = discord.Embed(description="**Burning Wincho!**", color=self.embed_color)
             embed.set_image(url=get_image(2))
@@ -79,7 +80,8 @@ class WinCho(commands.Cog):
             await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="윈초", description="당신은 윈초를 괴롭힐 수 있습니다")
-    async def wincho_korean(self, ctx, wincho_action=None):
+    async def wincho_korean(self, ctx: SlashContext, wincho_action):
+        ctx.defer()
         if wincho_action == "부수기":
             embed = discord.Embed(description="**윈초 부수기!**", color=self.embed_color)
             embed.set_image(url=get_image(1))
@@ -95,7 +97,7 @@ class WinCho(commands.Cog):
                 embed = discord.Embed(title=":no_entry: Execute Error!", description="**This command is only use bot owner!**", color=self.embed_color)
                 await ctx.send(embed=embed)
             else:
-                await ctx.channel.send(wincho_mention(random.randrange(0, 7)))
+                await ctx.send(wincho_mention(random.randrange(0, 7)))
         elif wincho_action == "태우기":
             embed = discord.Embed(description="**윈초 태우기!**", color=self.embed_color)
             embed.set_image(url=get_image(2))
