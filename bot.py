@@ -1,7 +1,7 @@
 import discord, os, psutil, platform, asyncio, platform
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
-from datetime import timedelta, datetime
+from Dtime import Uptime
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
@@ -24,9 +24,6 @@ token = open_token.read().split()[0]
 for filename in os.listdir("Cogs"):
     if filename.endswith(".py"):
         bot.load_extension(f"Cogs.{filename[:-3]}")
-
-now = datetime.now()
-
 
 @bot.event
 async def on_ready():
@@ -121,10 +118,17 @@ async def version(ctx: SlashContext):
     await ctx.send(embed=embed)
 
 def get_uptime():
-    with open("/proc/uptime", 'r') as f:
-        uptime_seconds = float(f.readline().split()[0])
-        t = timedelta(seconds = uptime_seconds)
-        return f"{t.days} D | {t.seconds} H | {t.seconds // 60 % 60} M"
+    uptime = str(Uptime.uptime().split(":"))
+    days = 0
+    hours = uptime[0]
+    minitues = uptime[1]
+
+    if hours >= 24:
+        hours -= 24
+        days += 1
+
+    return f"{days} D | {hours} H | {minitues} M"
+
 
 @slash.slash(name="status")
 async def status(ctx: SlashContext):
