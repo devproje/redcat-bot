@@ -1,7 +1,6 @@
 import discord, os, psutil, platform, asyncio, platform
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
-from Dtime import Uptime
 
 bot = commands.Bot(command_prefix="\\", help_command=None, intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
@@ -30,7 +29,7 @@ async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
     
-    activity = [f"{bot_name} {bot_version}", f"Uptime: {get_uptime()}"]
+    activity = [f"{bot_name} {bot_version}"""", f"Uptime: {get_uptime()}"""]
     await activity_switcher(activity)
 
 async def activity_switcher(games):
@@ -117,17 +116,9 @@ async def version(ctx: SlashContext):
         .set_footer(text=f"{ctx.author.name}#{ctx.author.discriminator}", icon_url=ctx.author.avatar_url))
     await ctx.send(embed=embed)
 
+"""
 def get_uptime():
-    uptime = str(Uptime.uptime().split(":"))
-    days = 0
-    hours = uptime[0]
-    minitues = uptime[1]
-
-    if hours >= 24:
-        hours -= 24
-        days += 1
-
-    return f"{days} D | {hours} H | {minitues} M"
+"""
 
 
 @slash.slash(name="status")
@@ -137,7 +128,7 @@ async def status(ctx: SlashContext):
         .add_field(name="**RAM USAGE**", value=f"{psutil.virtual_memory().percent}%", inline=True)
         .add_field(name="**AVAILABLE USAGE**", value=f"{round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total, 1)}%", inline=True)
 
-        .add_field(name="**UPTIME**", value=f"{get_uptime()}", inline=True)
+        .add_field(name="**UPTIME**", value=f"DEPRECATED FOR BUGS", inline=True)
         .add_field(name="**SYSTEM INFO**", value=f"{platform.system()} | {platform.machine()}", inline=True)
         .add_field(name="**LATENCY**", value=f"{round(bot.latency * 1000)}ms", inline=True)
         
