@@ -29,7 +29,7 @@ async def on_ready():
     print(f"Logined for {bot_name}")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game(f"{bot_name} {bot_version}"))
     
-    activity = [f"{bot_name} {bot_version}"""", f"Uptime: {get_uptime()}"""]
+    activity = [f"{bot_name} {bot_version}"]""", f"Uptime: {get_uptime()}"""
     await activity_switcher(activity)
 
 async def activity_switcher(games):
