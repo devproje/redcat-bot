@@ -6,3 +6,4 @@
 /profile_image/
 /.object/
 /.DS_Store
+.env
