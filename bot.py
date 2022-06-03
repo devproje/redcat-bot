@@ -4,11 +4,15 @@ from dotenv import load_dotenv
 
 load_dotenv(".env")
 
-class RedCat(discord.Client):
-    async def on_ready(self):
-        print(f'Logged in as Bot')
-
 intents = discord.Intents.default()
-bot = RedCat(intents=intents)
+bot = commands.Bot(command_prefix=';', help_command=None, intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+for filename in os.listdir("commands"):
+    if filename.endswith(".py"):
+        bot.load_extension(f"commands.{filename[:-3]}")
 
 bot.run(os.getenv("TOKEN"))
