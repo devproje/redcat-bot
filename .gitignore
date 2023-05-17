@@ -1,8 +1,11 @@
-/token.txt
-/.idea/
-/__pycache__/
-/Cogs/__pycache__/
-/.vscode/
-/profile_image/
-/.object/
-/.DS_Store
+.env
+
+# IDE Settings
+.idea/
+.vscode/
+
+# MacOS File system cache
+.DS_Store
+
+# Added by cargo
+/target
